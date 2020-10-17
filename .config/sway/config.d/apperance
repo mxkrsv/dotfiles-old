@@ -1,0 +1,62 @@
+### Apperance:
+#
+# Gaps settings
+smart_gaps on
+gaps inner 10
+gaps outer 0
+
+# Border settings
+smart_borders on
+default_border pixel 2
+# Set to 'normal' to enable titlebar, to 'none' to disable borders or to 'pixel' to leave only borders w/o titlebar
+default_floating_border pixel 2
+
+# Titlebar font
+font Terminus Bold 10
+
+# Titlebar settings
+titlebar_border_thickness 0
+titlebar_padding 10 1
+
+### Nord (https://www.nordtheme.com/)
+#set $light #eceff4
+#set $dark #2e3440
+#set $focusedborder #eceff4
+#set $inactiveborder #88c0d0
+#set $unfocusedborder #5e81ac
+#set $urgentborder #a3be8c
+
+### Gruvbox
+set $light #ebdbb2
+set $dark #3c3836
+set $focused #ebdbb2
+set $inactive #8ec07c
+set $unfocused #689d6a
+set $urgent #b8bb26
+
+### Colors (see man 5 sway)
+# border - border around titlebar
+# bg - titlebar background
+# text - text on titlebar
+# indicator - shown where new window will open
+# child_border - border around the window
+# class			border		bg		text	indicator	child_border
+client.focused		$focused	$focused	$dark	$focused	$focused
+client.focused_inactive $inactive	$inactive	$dark	$inactive	$inactive
+client.unfocused	$unfocused	$unfocused	$light	$unfocused	$unfocused
+client.urgent		$urgent		$urgent		$light	$urgent		$urgent
+
+# Fix cursor size and theme in native wayland applications (fixes a very strange bug for me, you may want to comment it out
+seat seat0 xcursor_theme Adwaita 24
+
+# Gtk theme for wayland applications workaround
+exec_always {
+	gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita'
+	gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'
+	gsettings set org.gnome.desktop.interface gtk-color-scheme 'dark'
+	#gsettings set org.gnome.desktop.interface document-font-name 'Fira Sans 10'
+	gsettings set org.gnome.desktop.interface font-name 'Terminus 10'
+	gsettings set org.gnome.desktop.interface monospace-font-name 'Terminus 10'
+	gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
+	gsettings set org.gnome.desktop.interface cursor-size '24'
+}

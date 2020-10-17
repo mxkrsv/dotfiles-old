@@ -1,0 +1,15 @@
+# Start bar
+bar {
+	font Terminus
+	position top
+	status_command i3status-rs
+	colors {
+		separator $light
+		background #00000000
+		statusline $dark
+		focused_workspace $focused $focused $dark
+		active_workspace $unfocused $unfocused $light
+		inactive_workspace $dark $dark $light
+		urgent_workspace $urgent $urgent $dark
+	}
+}

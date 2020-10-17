@@ -1,0 +1,11 @@
+# Begs' config for sway
+#
+# Copy this and all subfiles to ~/.config/sway/config and ~/.config/sway/config.d/ and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
+
+# Run pure wayland session
+xwayland disable
+
+include @sysconfdir@/sway/config.d/*
+include ~/.config/sway/config.d/*

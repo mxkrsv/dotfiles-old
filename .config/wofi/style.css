@@ -1,0 +1,58 @@
+window {
+	/*margin: 2px;*/
+	font-family: Terminus;
+	border: 2px solid @light;
+	background: @background;
+}
+
+#input {
+	margin: 1px;
+	border: none;
+	border-radius: 0;
+	color: @light;
+	background: transparent;
+}
+
+#inner-box {
+}
+
+#outer-box {
+}
+
+#scroll {
+	margin-bottom: 2px;
+}
+
+#text {
+	margin: 3px;
+	background: transparent;
+	color: @light;
+}
+
+#img {
+	margin-right: 3px;
+	margin-left: 3px;
+}
+
+#text:selected {
+	color: @dark;
+}
+
+#entry:selected {
+	background: @light;
+	border-radius: 0;
+}
+
+#img {
+	background: transparent;
+}
+
+/* Nord */
+/*@define-color background rgba(46, 52, 64, 0.9);
+@define-color light #eceff4;
+@define-color dark #2e3440;*/
+
+/* Gruvbox */
+@define-color background rgba(40, 40, 40, 0.9);
+@define-color light #ebdbb2;
+@define-color dark #282828;

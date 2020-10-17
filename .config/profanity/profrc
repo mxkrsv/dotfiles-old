@@ -1,0 +1,9 @@
+[ui]
+theme=gruvbox
+history=true
+
+[logging]
+chlog=true
+
+[notifications]
+message=true

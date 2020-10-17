@@ -1,0 +1,11 @@
+show=drun
+location=top_right
+width=300
+height=200
+allow_images=true
+allow_markup=true
+term=alacritty
+x=-10
+y=10
+image_size=20
+prompt=Nya ^-^
