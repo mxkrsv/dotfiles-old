@@ -1,0 +1,8 @@
+[user]
+	email = begs@disroot.org
+	name = Maxim Karasev
+[sendemail]
+	smtpserver = disroot.org
+	smtpuser = begs@disroot.org
+	smtpencryption = tls
+	smtpserverport = 587
