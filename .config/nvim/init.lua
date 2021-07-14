@@ -114,7 +114,7 @@ require'nvim-treesitter.configs'.setup {
 -- Setup folding based on treesitter
 o.foldmethod = 'expr'
 o.foldexpr = 'nvim_treesitter#foldexpr()'
-o.foldnestmax = 2
+o.foldnestmax = 1
 
 -- Setup LSP
 local nvim_lsp = require 'lspconfig'
