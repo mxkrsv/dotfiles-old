@@ -3,6 +3,9 @@ bar {
 	font Terminus
 	position top
 	status_command i3status-rs
+	status_padding 0
+	status_edge_padding 0
+	mode hide
 	colors {
 		separator $light
 		background #00000000
