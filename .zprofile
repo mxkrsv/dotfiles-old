@@ -16,7 +16,7 @@ fi
 	
 if [ "$(tty)" = "/dev/tty1" ]; then
 	if [ "$(command -v sway)" ]; then
-		exec sway 2>&1 | tee ~/.local/share/sway.log
+		exec sway
 	fi	
 	if [ "$(command -v startx)" ]; then
 		exec startx
