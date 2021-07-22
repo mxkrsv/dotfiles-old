@@ -1,5 +1,14 @@
-theme = "gruvbox-dark"
-icons = "none"
+[theme]
+	name = "gruvbox-dark"
+[theme.overrides]
+	separator = ""
+
+[icons]
+	name = "none"
+
+#[[block]]
+#	block = "music"
+#	buttons = ["play", "next"]
 
 [[block]]
 	block = "focused_window"
@@ -59,7 +68,3 @@ icons = "none"
 	block = "time"
 	interval = 60
 	format = "%Y/%m/%d %R"
-
-#[[block]]
-#	block = "music"
-#	buttons = ["play", "next"]
