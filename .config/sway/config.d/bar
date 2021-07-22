@@ -5,10 +5,10 @@ bar {
 	status_command i3status-rs
 	status_padding 0
 	status_edge_padding 0
-	mode hide
+	mode dock
 	colors {
 		separator $light
-		background #00000000
+		background #28282800
 		statusline $dark
 		focused_workspace $focused $focused $dark
 		active_workspace $unfocused $unfocused $light
