@@ -109,7 +109,7 @@ require'nvim-treesitter.configs'.setup {
       node_decremental = "grm",
     },
   },
-  indent = { enable = true }
+  --indent = { enable = true }
 }
 -- Setup folding based on treesitter
 o.foldmethod = 'expr'
