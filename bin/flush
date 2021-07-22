@@ -1,0 +1,11 @@
+#!/bin/sh
+if [ "$1" ]; then
+	[ -f "$1" ] && ext=$(echo $1 | sed 's/.*\./\./')
+	num=$(cat /tmp/counter)
+	mv "$1" $num$ext
+	echo $((num + 1)) > /tmp/counter
+else
+	echo 0 > /tmp/counter
+	find . -mindepth 1 -maxdepth 1 -exec ~/flush {} \; 
+	rm /tmp/counter
+fi
