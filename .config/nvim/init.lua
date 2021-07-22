@@ -53,7 +53,7 @@ g.gruvbox_contrast_dark = 'medium'
 g.gruvbox_transparent_bg = true 
 execute 'colorscheme gruvbox'
 -- Transparent bg
-execute 'hi Normal guibg=none ctermbg=none'
+execute 'hi! Normal ctermbg=NONE guibg=NONE'
 
 -- Setup completion
 o.completeopt = "menuone,noselect"
@@ -170,8 +170,10 @@ require'lualine'.setup {
   options = {
     icons_enabled = false,
     theme = 'gruvbox',
-    component_separators = {'', ''},
-    section_separators = {'', ''},
+    --component_separators = {'', ''},
+    --section_separators = {'', ''},
+    component_separators = {'|'},
+    section_separators = {''},
     disabled_filetypes = {}
   },
   sections = {
