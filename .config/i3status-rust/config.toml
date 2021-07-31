@@ -67,4 +67,4 @@
 [[block]]
 	block = "time"
 	interval = 60
-	format = "%Y/%m/%d %R"
+	format = "%e %b %y %R"
