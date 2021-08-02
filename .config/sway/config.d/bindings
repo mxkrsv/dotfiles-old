@@ -12,19 +12,19 @@ include ~/.config/sway/config.d/vars
 	bindsym --to-code $mod+o exec $explorer
 
 	# Brightess control
-	bindsym XF86MonBrightnessDown exec light -U 5
-	bindsym XF86MonBrightnessUp exec light -A 5
+	bindsym --locked XF86MonBrightnessDown exec light -U 5
+	bindsym --locked XF86MonBrightnessUp exec light -A 5
 
 	# Volume control
-	bindsym XF86AudioRaiseVolume exec amixer set Master 1+ && pkill -x -RTMIN+11 waybar
-	bindsym XF86AudioLowerVolume exec amixer set Master 1- && pkill -x -RTMIN+11 waybar
-	bindsym XF86AudioMute exec amixer set Master toggle && pkill -x -RTMIN+11 waybar
+	bindsym --locked XF86AudioRaiseVolume exec amixer set Master 1+ && pkill -x -RTMIN+11 waybar
+	bindsym --locked XF86AudioLowerVolume exec amixer set Master 1- && pkill -x -RTMIN+11 waybar
+	bindsym --locked XF86AudioMute exec amixer set Master toggle && pkill -x -RTMIN+11 waybar
 	#bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 	# Audio playback control
-	bindsym XF86AudioPlay exec playerctl play-pause
-	bindsym XF86AudioNext exec playerctl next
-	bindsym XF86AudioPrev exec playerctl previous
+	bindsym --locked XF86AudioPlay exec playerctl play-pause
+	bindsym --locked XF86AudioNext exec playerctl next
+	bindsym --locked XF86AudioPrev exec playerctl previous
 	
 	# Make a screenshot and copy to clipboard
 	bindsym --to-code $mod+p exec $screenshot
