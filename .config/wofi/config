@@ -9,3 +9,7 @@ x=-10
 y=10
 image_size=20
 prompt=Nya ^-^
+gtk_dark=true
+key_down=j-Alt_L
+key_up=k-Alt_L
+
