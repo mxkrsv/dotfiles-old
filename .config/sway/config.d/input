@@ -23,7 +23,7 @@ input type:tablet_tool {
 
 input type:keyboard {
 	xkb_layout us,ru
-	xkb_options grp:alt_shift_toggle
+	xkb_options grp:caps_toggle,grp_led:caps
 }
 
 input type:touchpad {
