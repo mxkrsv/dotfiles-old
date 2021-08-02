@@ -18,18 +18,15 @@ set $term foot
 # default: set $menu dmenu_path | dmenu | xargs swaymsg exec --
 set $menu wofi
 
-# Screen locker
-set $locker 'swaylock --font Terminus -e -f -i ~/.wallpaper/00.jpg'
-
 # Dbus session
 set $dbus 'dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus'
 
 # Idle configuration
 set $idle swayidle -w \
-		 timeout 600 $locker \
+		 timeout 600 swaylock \
 		 timeout 900 'swaymsg "output * dpms off"' \
 			  resume 'swaymsg "output * dpms on"' \
-		 before-sleep $locker
+		 before-sleep swaylock
 # This will lock your screen after 600 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
@@ -43,7 +40,7 @@ set $powermenu 'case $(echo "poweroff\nreboot\nlock" | wofi -d -p "powermenu" -k
 		doas -n reboot || notify-send "failed to reboot" \
 		;; \
 	lock) \
-		'$locker' \
+		swaylock \
 		;; \
 esac'
 
