@@ -21,7 +21,6 @@ o.mouse = 'a'
 o.number = true
 o.relativenumber = true
 o.textwidth = 80
-o.clipboard = 'unnamedplus'
 
 require('packer').startup(function()
   -- Packer can manage itself
