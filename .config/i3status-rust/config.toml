@@ -60,9 +60,9 @@
 	format = "{percentage} {power} {time}"
 	full_format = "{power} "
 
-[[block]]
-	block = "keyboard_layout"
-	driver = "sway"
+#[[block]]
+#	block = "keyboard_layout"
+#	driver = "sway"
 
 [[block]]
 	block = "time"
