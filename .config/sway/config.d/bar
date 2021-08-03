@@ -1,4 +1,6 @@
-# Start bar
+### Configure panel
+#
+# Uses colors from config.d/appearance
 bar {
 	font Terminus
 	position top

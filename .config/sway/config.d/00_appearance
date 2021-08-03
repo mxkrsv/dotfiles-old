@@ -1,4 +1,4 @@
-### Apperance:
+### Apperance configuration
 #
 # Gaps settings
 smart_gaps on
@@ -18,7 +18,7 @@ font Terminus Bold 10
 titlebar_border_thickness 0
 titlebar_padding 10 1
 
-### Nord (https://www.nordtheme.com/)
+### Nord
 #set $light #eceff4
 #set $dark #2e3440
 #set $focusedborder #eceff4

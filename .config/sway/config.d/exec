@@ -1,6 +1,0 @@
-# Start a dbus session
-exec $dbus
-# Execute swayidle
-exec $idle
-# Start a notification daemon
-exec mako

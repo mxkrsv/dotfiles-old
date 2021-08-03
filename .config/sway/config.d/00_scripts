@@ -1,0 +1,31 @@
+### Scripts
+#
+# Screenshot commands, so you can run `swaymsg "exec \$screenshot"`
+set $screenshot grim - \
+	| wl-copy --type image/png && notify-send "screenshot copied to clipboard" \
+	|| notify-send "failed to take screenshot"
+set $areascreenshot grim -g "$(slurp)" - \
+	| wl-copy --type image/png && notify-send "screenshot copied to clipboard" \
+	|| notify-send "failed to take screenshot"
+
+# Powermenu
+set $powermenu 'case $(echo "poweroff\nreboot\nlock" | wofi -d -p "powermenu" -k /dev/null) in \
+	poweroff) \
+		doas -n poweroff || notify-send "failed to poweroff" \
+		;; \
+	reboot) \
+		doas -n reboot || notify-send "failed to reboot" \
+		;; \
+	lock) \
+		swaylock \
+		;; \
+esac'
+
+# Explorer
+set $explorer 'while true; do \
+	file="$(ls -ap | wofi -d -p $PWD -k /dev/null)"; \
+	if [ "${file}" = "" ]; then exit; fi; \
+	if [ -f "${file}" ]; then xdg-open "${file}"; exit; fi; \
+	cd "${file}"; \
+done'
+

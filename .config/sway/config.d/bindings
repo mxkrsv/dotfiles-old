@@ -1,6 +1,3 @@
-### Include the file with variables
-include ~/.config/sway/config.d/vars
-
 ### Key bindings
 #
 # Basics:
