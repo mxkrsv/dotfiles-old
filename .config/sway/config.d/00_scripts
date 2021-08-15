@@ -9,7 +9,7 @@ set $areascreenshot grim -g "$(slurp)" - \
 	|| notify-send "failed to take screenshot"
 
 # Powermenu
-set $powermenu 'case $(echo "poweroff\nreboot\nlock" | wofi -d -p "powermenu" -k /dev/null) in \
+set $powermenu 'case $(echo "poweroff\nreboot\nlock" | bemenu) in \
 	poweroff) \
 		doas -n poweroff || notify-send "failed to poweroff" \
 		;; \
@@ -23,7 +23,7 @@ esac'
 
 # Explorer
 set $explorer 'while true; do \
-	file="$(ls -ap | wofi -d -p $PWD -k /dev/null)"; \
+	file="$(ls -ap | bemenu)"; \
 	if [ "${file}" = "" ]; then exit; fi; \
 	if [ -f "${file}" ]; then xdg-open "${file}"; exit; fi; \
 	cd "${file}"; \

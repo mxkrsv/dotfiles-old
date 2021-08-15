@@ -27,7 +27,7 @@ set $right l
 set $term footclient
 
 # Your preferred application launcher
-set $menu wofi
+set $menu bemenu-run | xargs swaymsg exec --
 
 include /etc/sway/config.d/*
 include ~/.config/sway/config.d/*
