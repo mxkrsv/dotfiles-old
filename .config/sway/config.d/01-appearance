@@ -12,7 +12,7 @@ default_border pixel 2
 default_floating_border pixel 2
 
 # Titlebar font
-font Terminus Bold 10
+font $font Bold $fontsize
 
 # Titlebar settings
 titlebar_border_thickness 0
@@ -55,8 +55,8 @@ exec_always {
 	gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'
 	gsettings set org.gnome.desktop.interface gtk-color-scheme 'dark'
 	#gsettings set org.gnome.desktop.interface document-font-name 'Fira Sans 10'
-	gsettings set org.gnome.desktop.interface font-name 'Terminus 10'
-	gsettings set org.gnome.desktop.interface monospace-font-name 'Terminus 10'
+	gsettings set org.gnome.desktop.interface font-name "$font $fontsize"
+	gsettings set org.gnome.desktop.interface monospace-font-name "$font $fontsize"
 	gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
 	gsettings set org.gnome.desktop.interface cursor-size '24'
 }

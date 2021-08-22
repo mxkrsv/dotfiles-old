@@ -23,11 +23,15 @@ set $down j
 set $up k
 set $right l
 
-# Your preferred terminal emulator
+# Terminal emulator
 set $term footclient
 
-# Your preferred application launcher
+# Application launcher
 set $menu bemenu-run | xargs swaymsg exec --
+
+# Font
+set $font Terminus
+set $fontsize 10
 
 include /etc/sway/config.d/*
 include ~/.config/sway/config.d/*
