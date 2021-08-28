@@ -16,3 +16,9 @@ background-color=#282828e0
 text-color=#ebdbb2
 border-color=#ebdbb2
 progress-color=source #cc241d
+
+[urgency=high]
+default-timeout=0
+background-color=#fb4934
+text-color=#282828
+border=color=#282828
