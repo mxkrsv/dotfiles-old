@@ -21,4 +21,4 @@ progress-color=source #cc241d
 default-timeout=0
 background-color=#fb4934
 text-color=#282828
-border=color=#282828
+border-color=#282828
