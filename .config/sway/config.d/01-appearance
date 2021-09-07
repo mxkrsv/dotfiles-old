@@ -28,7 +28,8 @@ titlebar_padding 10 1
 
 ### Gruvbox
 set $light #ebdbb2
-set $dark #3c3836
+set $dark #282828
+set $darktransparent #282828e0
 set $focused #ebdbb2
 set $inactive #8ec07c
 set $unfocused #689d6a
