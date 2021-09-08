@@ -13,9 +13,9 @@
 	bindsym --locked XF86MonBrightnessUp exec light -A 5
 
 	# Volume control
-	bindsym --locked XF86AudioRaiseVolume exec amixer set Master 1+ && pkill -x -RTMIN+11 waybar
-	bindsym --locked XF86AudioLowerVolume exec amixer set Master 1- && pkill -x -RTMIN+11 waybar
-	bindsym --locked XF86AudioMute exec amixer set Master toggle && pkill -x -RTMIN+11 waybar
+	bindsym --locked XF86AudioRaiseVolume exec amixer set Master 1+ && pkill -USR1 i3status
+	bindsym --locked XF86AudioLowerVolume exec amixer set Master 1- && pkill -USR1 i3status
+	bindsym --locked XF86AudioMute exec amixer set Master toggle && pkill -USR1 i3status
 	#bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 	# Audio playback control
