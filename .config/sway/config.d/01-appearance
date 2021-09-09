@@ -21,10 +21,11 @@ titlebar_padding 10 1
 ### Nord
 #set $light #eceff4
 #set $dark #2e3440
-#set $focusedborder #eceff4
-#set $inactiveborder #88c0d0
-#set $unfocusedborder #5e81ac
-#set $urgentborder #a3be8c
+#set $darktransparent #2e3440e0
+#set $focused #eceff4
+#set $inactive #88c0d0
+#set $unfocused #5e81ac
+#set $urgent #a3be8c
 
 ### Gruvbox
 set $light #ebdbb2
