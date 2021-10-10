@@ -7,9 +7,9 @@ gaps outer 0
 
 # Border settings
 smart_borders on
-default_border pixel 2
 # Set to 'normal' to enable titlebar, to 'none' to disable borders or to 'pixel' to leave only borders w/o titlebar
-default_floating_border pixel 2
+default_border pixel 2
+default_floating_border normal 2
 
 # Titlebar font
 font $font Bold $fontsize
@@ -31,9 +31,9 @@ titlebar_padding 10 1
 set $light #ebdbb2
 set $dark #282828
 set $darktransparent #282828e0
-set $focused #ebdbb2
-set $inactive #8ec07c
-set $unfocused #689d6a
+set $focused #458588
+set $inactive #689d6a
+set $unfocused $dark
 set $urgent #b8bb26
 
 ### Colors (see man 5 sway)
@@ -43,10 +43,10 @@ set $urgent #b8bb26
 # indicator - shown where new window will open
 # child_border - border around the window
 # class			border		bg		text	indicator	child_border
-client.focused		$focused	$focused	$dark	$focused	$focused
-client.focused_inactive $inactive	$inactive	$dark	$inactive	$inactive
-client.unfocused	$unfocused	$unfocused	$light	$unfocused	$unfocused
-client.urgent		$urgent		$urgent		$light	$urgent		$urgent
+client.focused		$focused	$focused	$light	$light		$focused
+client.focused_inactive $inactive	$inactive	$light	$light		$inactive
+client.unfocused	$unfocused	$unfocused	$light	$light		$unfocused
+client.urgent		$urgent		$urgent		$light	$light		$urgent
 
 # Fix cursor size and theme in native wayland applications (fixes a very strange bug for me, you may want to comment it out
 seat seat0 xcursor_theme Adwaita 24

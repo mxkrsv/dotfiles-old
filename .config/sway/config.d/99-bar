@@ -13,7 +13,7 @@ bar {
 		separator $light
 		background $darktransparent
 		statusline $light
-		focused_workspace $focused $focused $dark
+		focused_workspace $focused $focused $light
 		active_workspace $unfocused $unfocused $light
 		inactive_workspace $darktransparent $darktransparent $light
 		urgent_workspace $urgent $urgent $dark
