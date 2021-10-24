@@ -24,17 +24,17 @@ ipv6 {
 
 wireless _first_ {
 	format_up = "W: %ip (%essid%quality)"
-	format_down = "W: down"
+	format_down = ""
 }
 
 ethernet _first_ {
 	format_up = "E: %ip (%speed)"
-	format_down = "E: down"
+	format_down = ""
 }
 
 battery all {
 	format = "B: %status %percentage %remaining"
-	format_down = "B: none"
+	format_down = ""
 }
 
 disk "/" {
