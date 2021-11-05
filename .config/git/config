@@ -6,3 +6,5 @@
 	smtpuser = begs@disroot.org
 	smtpencryption = tls
 	smtpserverport = 587
+[rebase]
+	autosquash = true
