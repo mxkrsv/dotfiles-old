@@ -1,7 +1,7 @@
 emulate sh -c 'source /etc/profile'
 
-export VISUAL=vis
-export EDITOR=vis
+export VISUAL=nvim
+export EDITOR=nvim
 export MOZ_ENABLE_WAYLAND=1
 export QT_QPA_PLATFORM=wayland-egl
 export SDL_VIDEODRIVER=wayland
