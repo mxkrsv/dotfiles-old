@@ -164,21 +164,20 @@ map('n', '<leader>fb', '<cmd>Telescope buffers<cr>')
 map('n', '<leader>fh', '<cmd>Telescope help_tags<cr>')
 
 -- Setup statusline
-o.showmode = false
 require'lualine'.setup {
   options = {
     icons_enabled = false,
     theme = 'gruvbox',
-    --component_separators = {'', ''},
-    --section_separators = {'', ''},
-    component_separators = {'|'},
-    section_separators = {''},
-    disabled_filetypes = {}
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {},
+    always_divide_middle = true,
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff'},
-    lualine_c = {{'filename', path = 1}, {'diagnostics', sources = nvim_lsp}},
+    lualine_b = {'branch', 'diff',
+                  {'diagnostics', sources={'nvim_lsp', 'coc'}}},
+    lualine_c = {{'filename', path = 1}},
     lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
@@ -191,7 +190,14 @@ require'lualine'.setup {
     lualine_y = {},
     lualine_z = {}
   },
-  tabline = {},
+  --tabline = {
+  --  lualine_a = {'buffers'},
+  --  lualine_b = {'branch'},
+  --  lualine_c = {'filename'},
+  --  lualine_x = {},
+  --  lualine_y = {},
+  --  lualine_z = {'tabs'}
+  --},
   extensions = {}
 }
 
