@@ -49,10 +49,8 @@ g.gruvbox_bold = true
 g.gruvbox_italic = false
 g.gruvbox_invert_selection = false
 g.gruvbox_contrast_dark = 'medium'
-g.gruvbox_transparent_bg = true 
+g.gruvbox_transparent_bg = true
 execute 'colorscheme gruvbox'
--- Transparent bg
-execute 'hi! Normal ctermbg=NONE guibg=NONE'
 
 -- Setup completion
 o.completeopt = "menuone,noselect"
