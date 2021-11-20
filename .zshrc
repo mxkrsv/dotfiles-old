@@ -8,9 +8,10 @@ zstyle :compinstall filename '${HOME}/.zshrc'
 autoload -Uz compinit
 compinit
 
-source ${HOME}/.zshtheme
+source "$HOME"/.zshtheme
 
 alias ls='ls -hp --color=auto'
 
-[ -e /usr/share/fzf/key-bindings.zsh ] &&\
+if [ -e /usr/share/fzf/key-bindings.zsh ]; then
 	source /usr/share/fzf/key-bindings.zsh
+fi

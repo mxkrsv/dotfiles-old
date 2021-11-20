@@ -16,7 +16,7 @@ if [ -z "$XDG_RUNTIME_DIR" ]; then
 		chmod 0700 "$XDG_RUNTIME_DIR"
 	fi
 fi
-	
+
 if [ "$(tty)" = "/dev/tty1" ]; then
 	if [ "$(command -v sway)" ]; then
 		exec sway
