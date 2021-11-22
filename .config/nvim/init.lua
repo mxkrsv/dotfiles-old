@@ -162,6 +162,7 @@ map('n', '<leader>fb', '<cmd>Telescope buffers<cr>')
 map('n', '<leader>fh', '<cmd>Telescope help_tags<cr>')
 
 -- Setup statusline
+o.showmode = false -- Mode is already shown on lualine
 require'lualine'.setup {
   options = {
     icons_enabled = false,
