@@ -1,18 +1,7 @@
-### Begs' config for sway
-#
-# Read `man 5 sway` for a complete reference.
+# Part of git.sr.ht/~begs/dotfiles.
+# See `man 5 sway` for a complete reference.
 
-# Run pure wayland session (causes warning when config is reloaded)
-#xwayland disable
-
-# Start a dbus session
-exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
-
-# Start a notification daemon
-exec mako
-
-# Start foot server, so we can launch clients later
-exec foot --server
+### Variables
 
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
@@ -27,11 +16,343 @@ set $right l
 set $term footclient
 
 # Application launcher
-set $menu bemenu-run | xargs swaymsg exec --
+set $menu bemenu-run
 
 # Font
 set $font Terminus
-set $fontsize 10
+set $font_size 10
+
+### General configuration
+
+# Run pure wayland session (causes warning on config reload)
+#xwayland disable
+
+# Gaps settings
+smart_gaps on
+gaps inner 10
+gaps outer 0
+
+# Border settings
+# normal = w/ titlebar, pixel = w/o titlebar, none = disable
+smart_borders on
+default_border pixel 2
+default_floating_border normal 2
+
+# Titlebar font
+font $font Bold $font_size
+
+# Titlebar settings
+titlebar_border_thickness 0
+titlebar_padding 10 1
+
+### Output configuration
+
+# Random wallpaper
+output * bg `find ~/.wallpaper -type f | shuf -n 1` fill
+
+### Idle configuration
+exec swayidle -w \
+	timeout 600 swaylock \
+	timeout 900 'swaymsg "output * dpms off"' \
+		resume 'swaymsg "output * dpms on"' \
+	before-sleep swaylock
+
+### Input configuration
+# See `man 5 sway-input`
+
+# Mouse
+input type:pointer {
+	accel_profile flat
+	#pointer_accel -0.2
+}
+
+# Drawing tablet
+input type:tablet_tool {
+	left_handed 1
+}
+
+# Keyboard
+input type:keyboard {
+	xkb_layout us,ru
+	xkb_options grp:caps_toggle,grp_led:caps
+}
+
+# Touchpad
+input type:touchpad {
+	accel_profile flat
+	tap enabled
+	dwt enabled
+	tap_button_map lrm
+	natural_scroll enabled
+}
+
+### Key bindings
+
+## Basics
+
+# Run power menu
+bindsym --to-code $mod+i exec \
+	'case $(echo "poweroff\nreboot\nlock" | bemenu) in \
+		poweroff) \
+			doas -n poweroff;; \
+		reboot) \
+			doas -n reboot;; \
+		lock) \
+			swaylock;; \
+	esac'
+
+# Run file opener script
+bindsym --to-code $mod+o exec \
+	'while true; do \
+		file="$(ls -ap | bemenu)"; \
+		if [ "$file" = "" ]; then \
+			exit; \
+		elif [ -f "$file" ]; then \
+			exec xdg-open "$file"; \
+		else \
+			cd "$file"; \
+		fi \
+	done'
+
+# Make a screenshot and copy to clipboard
+bindsym --to-code $mod+p exec \
+	grim - | wl-copy --type image/png
+bindsym --to-code $mod+Shift+p exec \
+	grim -g "$(slurp)" - | wl-copy --type image/png
+
+# Brightess control
+bindsym --locked XF86MonBrightnessDown exec light -U 5
+bindsym --locked XF86MonBrightnessUp exec light -A 5
+
+# Volume control
+bindsym --locked XF86AudioRaiseVolume exec \
+	amixer set Master 1+ && pkill -USR1 i3status
+bindsym --locked XF86AudioLowerVolume exec \
+	amixer set Master 1- && pkill -USR1 i3status
+bindsym --locked XF86AudioMute exec \
+	amixer set Master toggle && pkill -USR1 i3status
+
+# Audio playback control
+bindsym --locked XF86AudioPlay exec playerctl play-pause
+bindsym --locked XF86AudioNext exec playerctl next
+bindsym --locked XF86AudioPrev exec playerctl previous
+
+# Start a terminal
+bindsym $mod+Return exec $term
+
+# Kill focused window
+bindsym --to-code $mod+Shift+q kill
+
+# Start your launcher
+bindsym --to-code $mod+d exec $menu
+
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal
+
+# Reload the configuration file
+bindsym --to-code $mod+Shift+c reload
+
+# Exit sway
+bindsym --to-code $mod+Shift+e exec swaynag -t warning \
+	-m 'Exit sway?' -b 'Yes' 'swaymsg exit'
+
+## Movement
+
+# Move your focus around
+bindsym --to-code $mod+$left focus left
+bindsym --to-code $mod+$down focus down
+bindsym --to-code $mod+$up focus up
+bindsym --to-code $mod+$right focus right
+# Or use $mod+[up|down|left|right]
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move the focused window with the same, but add Shift
+bindsym --to-code $mod+Shift+$left move left
+bindsym --to-code $mod+Shift+$down move down
+bindsym --to-code $mod+Shift+$up move up
+bindsym --to-code $mod+Shift+$right move right
+# Ditto, with arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+## Workspaces
+
+# Switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+# Note: workspaces can have any name you want, not just numbers.
+# We just use 1-10 as the default.
+
+## Layout stuff
+
+# You can "split" the current object of your focus with
+# $mod+b or $mod+v, for horizontal and vertical splits
+# respectively.
+bindsym --to-code $mod+b splith
+bindsym --to-code $mod+v splitv
+
+# Switch the current container between different layout styles
+bindsym --to-code $mod+s layout stacking
+bindsym --to-code $mod+w layout tabbed
+bindsym --to-code $mod+e layout toggle split
+
+# Make the current focus fullscreen
+bindsym --to-code $mod+f fullscreen
+
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+space floating toggle
+
+# Swap focus between the tiling area and the floating area
+bindsym $mod+space focus mode_toggle
+
+# Move focus to the parent container
+bindsym --to-code $mod+a focus parent
+
+## Scratchpad
+# Sway has a "scratchpad", which is a bag of holding for windows.
+# You can send windows there and get them back later.
+
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
+## Resizing containers
+mode "resize" {
+	# left will shrink the containers width
+	# right will grow the containers width
+	# up will shrink the containers height
+	# down will grow the containers height
+	bindsym $left resize shrink width 10px
+	bindsym $down resize grow height 10px
+	bindsym $up resize shrink height 10px
+	bindsym $right resize grow width 10px
+
+	# Ditto, with arrow keys
+	bindsym Left resize shrink width 10px
+	bindsym Down resize grow height 10px
+	bindsym Up resize shrink height 10px
+	bindsym Right resize grow width 10px
+
+	# Return to default mode
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+### Apperance
+
+## Colors
+
+# Nord
+#set $light #eceff4
+#set $dark #2e3440
+#set $darktransparent #2e3440e0
+#set $focused #eceff4
+#set $inactive #88c0d0
+#set $unfocused #5e81ac
+#set $urgent #a3be8c
+
+# Gruvbox
+set $light #ebdbb2
+set $dark #282828
+set $darktransparent #282828e0
+set $focus #458588
+set $inact #689d6a
+set $unfoc $dark
+set $urgent #b8bb26
+
+# Border colors (see `man 5 sway`)
+# border	- border around titlebar
+# background	- titlebar background
+# text		- text on titlebar
+# indicator	- shown where new window will be open
+# child_border	- border around the window
+# class			border	bg	text	indic	child_border
+client.focused		$focus	$focus	$light	$light	$focus
+client.focused_inactive $inact	$inact	$light	$light	$inact
+client.unfocused	$unfoc	$unfoc	$light	$light	$unfoc
+client.urgent		$urgent	$urgent	$light	$light	$urgent
+
+## UI stuff
+
+# Set cursor theme
+seat seat0 xcursor_theme Adwaita 24
+
+# Set GTK theme
+exec_always {
+	gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita'
+	gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'
+	gsettings set org.gnome.desktop.interface gtk-color-scheme 'dark'
+	gsettings set org.gnome.desktop.interface font-name "$font $font_size"
+	gsettings set org.gnome.desktop.interface monospace-font-name \
+		"$font $font_size"
+	gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
+	gsettings set org.gnome.desktop.interface cursor-size '24'
+}
+
+### Status bar
+# See `man 5 sway-bar`
+
+bar {
+	font $font $font_size
+	separator_symbol ' | '
+	position top
+	status_command i3status
+	status_padding 0
+	status_edge_padding 12
+	mode dock
+	colors {
+		separator $light
+		background $darktransparent
+		statusline $light
+		focused_workspace $focus $focus $light
+		active_workspace $unfoc $unfoc $light
+		inactive_workspace $darktransparent $darktransparent $light
+		urgent_workspace $urgent $urgent $dark
+	}
+}
+
+### Autostart
+
+# Start a dbus session
+exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
+# Start a notification daemon
+exec mako
+# Start foot server, so we can use footclient as term
+exec foot --server
+
+### Include additional configs
 
 include /etc/sway/config.d/*
 include ~/.config/sway/config.d/*
