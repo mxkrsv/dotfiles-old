@@ -3,24 +3,26 @@
 
 ### Variables
 
-# Logo key. Use Mod1 for Alt.
-set $mod Mod4
+set {
+	# Logo key. Use Mod1 for Alt.
+	$mod Mod4
 
-# Home row direction keys, like vim
-set $left h
-set $down j
-set $up k
-set $right l
+	# Home row direction keys, like vim
+	$left h
+	$down j
+	$up k
+	$right l
 
-# Terminal emulator
-set $term footclient
+	# Terminal emulator
+	$term footclient
 
-# Application launcher
-set $menu bemenu-run
+	# Application launcher
+	$menu bemenu-run
 
-# Font
-set $font Terminus
-set $font_size 10
+	# Font
+	$font Terminus
+	$font_size 10
+}
 
 ### General configuration
 
@@ -29,8 +31,10 @@ set $font_size 10
 
 # Gaps settings
 smart_gaps on
-gaps inner 10
-gaps outer 0
+gaps {
+	inner 10
+	outer 0
+}
 
 # Border settings
 # normal = w/ titlebar, pixel = w/o titlebar, none = disable
@@ -51,6 +55,8 @@ titlebar_padding 10 1
 output * bg `find ~/.wallpaper -type f | shuf -n 1` fill
 
 ### Idle configuration
+
+# Start idle tracker
 exec swayidle -w \
 	timeout 600 swaylock \
 	timeout 900 'swaymsg "output * dpms off"' \
@@ -115,27 +121,27 @@ bindsym --to-code $mod+o exec \
 	done'
 
 # Make a screenshot and copy to clipboard
-bindsym --to-code $mod+p exec \
-	grim - | wl-copy --type image/png
-bindsym --to-code $mod+Shift+p exec \
-	grim -g "$(slurp)" - | wl-copy --type image/png
+bindsym --to-code {
+	$mod+p exec grim -| wl-copy --type image/png # Full screen
+	$mod+Shift+p exec grim -g "$(slurp)" - | wl-copy -t image/png # Area
+}
 
-# Brightess control
-bindsym --locked XF86MonBrightnessDown exec light -U 5
-bindsym --locked XF86MonBrightnessUp exec light -A 5
+# Media keys
+bindsym --locked {
+	# Brightness
+	XF86MonBrightnessDown	exec light -U 5
+	XF86MonBrightnessUp	exec light -A 5
 
-# Volume control
-bindsym --locked XF86AudioRaiseVolume exec \
-	amixer set Master 1+ && pkill -USR1 i3status
-bindsym --locked XF86AudioLowerVolume exec \
-	amixer set Master 1- && pkill -USR1 i3status
-bindsym --locked XF86AudioMute exec \
-	amixer set Master toggle && pkill -USR1 i3status
+	# Sound
+	XF86AudioRaiseVolume exec amixer set Master 1+ && pkill -USR1 i3status
+	XF86AudioLowerVolume exec amixer set Master 1- && pkill -USR1 i3status
+	XF86AudioMute exec amixer set Master toggle && pkill -USR1 i3status
 
-# Audio playback control
-bindsym --locked XF86AudioPlay exec playerctl play-pause
-bindsym --locked XF86AudioNext exec playerctl next
-bindsym --locked XF86AudioPrev exec playerctl previous
+	# Media playback
+	XF86AudioPlay exec playerctl play-pause
+	XF86AudioNext exec playerctl next
+	XF86AudioPrev exec playerctl previous
+}
 
 # Start a terminal
 bindsym $mod+Return exec $term
@@ -272,32 +278,25 @@ bindsym $mod+r mode "resize"
 
 ### Apperance
 
-## Colors
+## Colors (gruvbox theme)
 
-# Nord
-#set $light #eceff4
-#set $dark #2e3440
-#set $darktransparent #2e3440e0
-#set $focused #eceff4
-#set $inactive #88c0d0
-#set $unfocused #5e81ac
-#set $urgent #a3be8c
+set {
+	$light #ebdbb2
+	$dark #282828
+	$darktransparent #282828e0
+	$focus #458588
+	$inact #689d6a
+	$unfoc $dark
+	$urgent #b8bb26
+}
 
-# Gruvbox
-set $light #ebdbb2
-set $dark #282828
-set $darktransparent #282828e0
-set $focus #458588
-set $inact #689d6a
-set $unfoc $dark
-set $urgent #b8bb26
-
-# Border colors (see `man 5 sway`)
+## Border colors (see `man 5 sway`)
 # border	- border around titlebar
 # background	- titlebar background
 # text		- text on titlebar
 # indicator	- shown where new window will be open
 # child_border	- border around the window
+
 # class			border	bg	text	indic	child_border
 client.focused		$focus	$focus	$light	$light	$focus
 client.focused_inactive $inact	$inact	$light	$light	$inact
@@ -345,14 +344,20 @@ bar {
 
 ### Autostart
 
-# Start a dbus session
-exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
-# Start a notification daemon
-exec mako
-# Start foot server, so we can use footclient as term
-exec foot --server
+exec {
+	# D-Bus session
+	dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus &
+
+	# Notification daemon
+	mako &
+
+	# Foot server, so we can use footclient as term
+	foot --server &
+}
 
 ### Include additional configs
 
-include /etc/sway/config.d/*
-include ~/.config/sway/config.d/*
+include {
+	/etc/sway/config.d/*
+	~/.config/sway/config.d/*
+}
