@@ -1,13 +1,12 @@
 # Part of git.sr.ht/~begs/dotfiles.
 # See `man 5 sway` for a complete reference.
 
-### Variables
-
+# Variables
 set {
 	# Logo key. Use Mod1 for Alt.
 	$mod Mod4
 
-	# Home row direction keys, like vim
+	# Home row direction keys, like vi
 	$left h
 	$down j
 	$up k
@@ -17,7 +16,10 @@ set {
 	$term footclient
 
 	# Application launcher
-	$menu bemenu-run
+	$launcher bemenu-run
+
+	# Interactive menu
+	$menu bemenu
 
 	# Font
 	$font Terminus
@@ -94,11 +96,9 @@ input type:touchpad {
 
 ### Key bindings
 
-## Basics
-
 # Run power menu
 bindsym --to-code $mod+i exec \
-	'case $(echo "poweroff\nreboot\nlock" | bemenu) in \
+	'case $(echo "poweroff\nreboot\nlock" | $menu) in \
 		poweroff) \
 			doas -n poweroff;; \
 		reboot) \
@@ -110,7 +110,7 @@ bindsym --to-code $mod+i exec \
 # Run file opener script
 bindsym --to-code $mod+o exec \
 	'while true; do \
-		file="$(ls -ap | bemenu)"; \
+		file="$(ls -ap | $menu)"; \
 		if [ "$file" = "" ]; then \
 			exit; \
 		elif [ -f "$file" ]; then \
@@ -129,8 +129,8 @@ bindsym --to-code {
 # Media keys
 bindsym --locked {
 	# Brightness
-	XF86MonBrightnessDown	exec light -U 5
-	XF86MonBrightnessUp	exec light -A 5
+	XF86MonBrightnessDown exec light -U 5
+	XF86MonBrightnessUp exec light -A 5
 
 	# Sound
 	XF86AudioRaiseVolume exec amixer set Master 1+ && pkill -USR1 i3status
@@ -143,14 +143,24 @@ bindsym --locked {
 	XF86AudioPrev exec playerctl previous
 }
 
-# Start a terminal
-bindsym $mod+Return exec $term
+# General actions
+bindsym --to-code {
+	# Start a terminal
+	$mod+Return exec $term
 
-# Kill focused window
-bindsym --to-code $mod+Shift+q kill
+	# Kill focused window
+	$mod+Shift+q kill
 
-# Start your launcher
-bindsym --to-code $mod+d exec $menu
+	# Start your launcher
+	$mod+d exec $launcher
+
+	# Reload the configuration file
+	$mod+Shift+c reload
+
+	# Exit sway
+	$mod+Shift+e exec swaynag -t warning \
+		-m 'Exit sway?' -b 'Yes' 'swaymsg exit'
+}
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -159,127 +169,124 @@ bindsym --to-code $mod+d exec $menu
 # mouse button for dragging.
 floating_modifier $mod normal
 
-# Reload the configuration file
-bindsym --to-code $mod+Shift+c reload
+# Movement
+bindsym --to-code {
+	# Move your focus around
+	$mod+$left focus left
+	$mod+$down focus down
+	$mod+$up focus up
+	$mod+$right focus right
+	# Or use $mod+[up|down|left|right]
+	$mod+Left focus left
+	$mod+Down focus down
+	$mod+Up focus up
+	$mod+Right focus right
 
-# Exit sway
-bindsym --to-code $mod+Shift+e exec swaynag -t warning \
-	-m 'Exit sway?' -b 'Yes' 'swaymsg exit'
-
-## Movement
-
-# Move your focus around
-bindsym --to-code $mod+$left focus left
-bindsym --to-code $mod+$down focus down
-bindsym --to-code $mod+$up focus up
-bindsym --to-code $mod+$right focus right
-# Or use $mod+[up|down|left|right]
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
-# Move the focused window with the same, but add Shift
-bindsym --to-code $mod+Shift+$left move left
-bindsym --to-code $mod+Shift+$down move down
-bindsym --to-code $mod+Shift+$up move up
-bindsym --to-code $mod+Shift+$right move right
-# Ditto, with arrow keys
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-
-## Workspaces
-
-# Switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
-# Move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
-# Note: workspaces can have any name you want, not just numbers.
-# We just use 1-10 as the default.
-
-## Layout stuff
-
-# You can "split" the current object of your focus with
-# $mod+b or $mod+v, for horizontal and vertical splits
-# respectively.
-bindsym --to-code $mod+b splith
-bindsym --to-code $mod+v splitv
-
-# Switch the current container between different layout styles
-bindsym --to-code $mod+s layout stacking
-bindsym --to-code $mod+w layout tabbed
-bindsym --to-code $mod+e layout toggle split
-
-# Make the current focus fullscreen
-bindsym --to-code $mod+f fullscreen
-
-# Toggle the current focus between tiling and floating mode
-bindsym $mod+Shift+space floating toggle
-
-# Swap focus between the tiling area and the floating area
-bindsym $mod+space focus mode_toggle
-
-# Move focus to the parent container
-bindsym --to-code $mod+a focus parent
-
-## Scratchpad
-# Sway has a "scratchpad", which is a bag of holding for windows.
-# You can send windows there and get them back later.
-
-# Move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
-
-# Show the next scratchpad window or hide the focused scratchpad window.
-# If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
-
-## Resizing containers
-mode "resize" {
-	# left will shrink the containers width
-	# right will grow the containers width
-	# up will shrink the containers height
-	# down will grow the containers height
-	bindsym $left resize shrink width 10px
-	bindsym $down resize grow height 10px
-	bindsym $up resize shrink height 10px
-	bindsym $right resize grow width 10px
-
+	# Move the focused window with the same, but add Shift
+	$mod+Shift+$left move left
+	$mod+Shift+$down move down
+	$mod+Shift+$up move up
+	$mod+Shift+$right move right
 	# Ditto, with arrow keys
-	bindsym Left resize shrink width 10px
-	bindsym Down resize grow height 10px
-	bindsym Up resize shrink height 10px
-	bindsym Right resize grow width 10px
-
-	# Return to default mode
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
+	$mod+Shift+Left move left
+	$mod+Shift+Down move down
+	$mod+Shift+Up move up
+	$mod+Shift+Right move right
 }
-bindsym $mod+r mode "resize"
+
+# Workspaces
+bindsym {
+	# Switch to workspace
+	$mod+1 workspace 1
+	$mod+2 workspace 2
+	$mod+3 workspace 3
+	$mod+4 workspace 4
+	$mod+5 workspace 5
+	$mod+6 workspace 6
+	$mod+7 workspace 7
+	$mod+8 workspace 8
+	$mod+9 workspace 9
+	$mod+0 workspace 10
+	# Move focused container to workspace
+	$mod+Shift+1 move container to workspace 1
+	$mod+Shift+2 move container to workspace 2
+	$mod+Shift+3 move container to workspace 3
+	$mod+Shift+4 move container to workspace 4
+	$mod+Shift+5 move container to workspace 5
+	$mod+Shift+6 move container to workspace 6
+	$mod+Shift+7 move container to workspace 7
+	$mod+Shift+8 move container to workspace 8
+	$mod+Shift+9 move container to workspace 9
+	$mod+Shift+0 move container to workspace 10
+	# Note: workspaces can have any name you want, not just numbers.
+	# We just use 1-10 as the default.
+}
+
+# Layout stuff
+bindsym --to-code {
+	# You can "split" the current object of your focus with
+	# $mod+b or $mod+v, for horizontal and vertical splits
+	# respectively.
+	$mod+b splith
+	$mod+v splitv
+
+	# Switch the current container between different layout styles
+	$mod+s layout stacking
+	$mod+w layout tabbed
+	$mod+e layout toggle split
+
+	# Make the current focus fullscreen
+	$mod+f fullscreen
+
+	# Toggle the current focus between tiling and floating mode
+	$mod+Shift+space floating toggle
+
+	# Swap focus between the tiling area and the floating area
+	$mod+space focus mode_toggle
+
+	# Move focus to the parent container
+	$mod+a focus parent
+}
+
+# Scratchpad
+bindsym {
+	# Move the currently focused window to the scratchpad
+	$mod+Shift+minus move scratchpad
+
+	# Show the next scratchpad window or hide the focused scratchpad
+	# window. If there are multiple scratchpad windows, this command
+	# cycles through them.
+	$mod+minus scratchpad show
+}
+
+# Resizing containers
+mode "resize" {
+	bindsym --to-code {
+		# left will shrink the containers width
+		# right will grow the containers width
+		# up will shrink the containers height
+		# down will grow the containers height
+		$left resize shrink width 10px
+		$down resize grow height 10px
+		$up resize shrink height 10px
+		$right resize grow width 10px
+
+		# Ditto, with arrow keys
+		Left resize shrink width 10px
+		Down resize grow height 10px
+		Up resize shrink height 10px
+		Right resize grow width 10px
+
+		# Return to default mode
+		Return mode "default"
+		Escape mode "default"
+	}
+}
+bindsym --to-code $mod+r mode "resize"
 
 ### Apperance
 
-## Colors (gruvbox theme)
-
+# Colors (gruvbox theme)
 set {
 	$light #ebdbb2
 	$dark #282828
@@ -290,39 +297,28 @@ set {
 	$urgent #b8bb26
 }
 
-## Border colors (see `man 5 sway`)
-# border	- border around titlebar
-# background	- titlebar background
-# text		- text on titlebar
-# indicator	- shown where new window will be open
-# child_border	- border around the window
-
+# Border colors (see `man 5 sway`)
 # class			border	bg	text	indic	child_border
 client.focused		$focus	$focus	$light	$light	$focus
 client.focused_inactive $inact	$inact	$light	$light	$inact
 client.unfocused	$unfoc	$unfoc	$light	$light	$unfoc
 client.urgent		$urgent	$urgent	$light	$light	$urgent
 
-## UI stuff
-
 # Set cursor theme
 seat seat0 xcursor_theme Adwaita 24
 
 # Set GTK theme
-exec_always {
-	gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita'
-	gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'
-	gsettings set org.gnome.desktop.interface gtk-color-scheme 'dark'
-	gsettings set org.gnome.desktop.interface font-name "$font $font_size"
-	gsettings set org.gnome.desktop.interface monospace-font-name \
-		"$font $font_size"
-	gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
-	gsettings set org.gnome.desktop.interface cursor-size '24'
+exec_always gsettings set org.gnome.desktop.interface {
+	gtk-theme 'Adwaita'
+	icon-theme 'Adwaita'
+	gtk-color-scheme 'dark'
+	font-name "$font $font_size"
+	monospace-font-name "$font $font_size"
+	cursor-theme 'Adwaita'
+	cursor-size '24'
 }
 
-### Status bar
-# See `man 5 sway-bar`
-
+# Status bar (see `man 5 sway-bar`)
 bar {
 	font $font $font_size
 	separator_symbol ' | '
@@ -342,8 +338,9 @@ bar {
 	}
 }
 
-### Autostart
+### Service
 
+# Autostart
 exec {
 	# D-Bus session
 	dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus &
@@ -355,8 +352,7 @@ exec {
 	foot --server &
 }
 
-### Include additional configs
-
+# Include additional configs
 include {
 	/etc/sway/config.d/*
 	~/.config/sway/config.d/*
