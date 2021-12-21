@@ -158,8 +158,7 @@ bindsym --to-code {
 	$mod+Shift+c reload
 
 	# Exit sway
-	$mod+Shift+e exec swaynag -t warning \
-		-m 'Exit sway?' -b 'Yes' 'swaymsg exit'
+	$mod+Shift+e exit
 }
 
 # Drag floating windows by holding down $mod and left mouse button.
