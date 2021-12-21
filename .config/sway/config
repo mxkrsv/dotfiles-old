@@ -348,13 +348,15 @@ bar {
 # Autostart
 exec {
 	# D-Bus session
-	dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus &
+	pgrep -x dbus-daemon || dbus-daemon --session \
+		--address=unix:path=$XDG_RUNTIME_DIR/bus &
 
 	# Notification daemon
-	mako &
+	pgrep -x mako || mako &
 
 	# Foot server, so we can use footclient as term
-	foot --server &
+	pgrep -xf 'foot --server' || \
+		foot --server --log-no-syslog --log-level=warning &
 }
 
 # Include additional configs
