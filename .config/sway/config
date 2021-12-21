@@ -283,6 +283,12 @@ mode "resize" {
 }
 bindsym --to-code $mod+r mode "resize"
 
+# Ignore all bindings
+mode "passthrough" {
+	bindsym $mod+Equal mode "default"
+}
+bindsym $mod+Equal mode "passthrough"
+
 ### Apperance
 
 # Colors (gruvbox theme)
