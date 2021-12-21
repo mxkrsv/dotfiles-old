@@ -96,17 +96,6 @@ input type:touchpad {
 
 ### Key bindings
 
-# Run power menu
-bindsym --to-code $mod+i exec \
-	'case $(echo "poweroff\nreboot\nlock" | $menu) in \
-		poweroff) \
-			doas -n poweroff;; \
-		reboot) \
-			doas -n reboot;; \
-		lock) \
-			swaylock;; \
-	esac'
-
 # Run file opener script
 bindsym --to-code $mod+o exec \
 	'while true; do \
@@ -288,6 +277,37 @@ mode "passthrough" {
 	bindsym $mod+Equal mode "default"
 }
 bindsym $mod+Equal mode "passthrough"
+
+# System setup
+mode "config" {
+	bindsym --to-code {
+		# Machine power state
+		p exec doas -n poweroff; mode "default"
+		r exec doas -n reboot; mode "default"
+
+		# Lock screen
+		l exec swaylock; mode "default"
+
+		# Brightness
+		b exec light -A 5
+		Shift+b exec light -U 5
+
+		# Sound
+		v exec amixer set Master 1+ && pkill -USR1 i3status
+		Shift+v exec amixer set Master 1- && pkill -USR1 i3status
+		m exec amixer set Master toggle && pkill -USR1 i3status
+
+		# Media playback
+		a exec playerctl previous
+		s exec playerctl play-pause
+		d exec playerctl next
+
+		# Return to default mode
+		Return mode "default"
+		Escape mode "default"
+	}
+}
+bindsym --to-code $mod+c mode "config"
 
 ### Apperance
 
