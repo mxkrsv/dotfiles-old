@@ -16,10 +16,10 @@ set {
 	$term footclient
 
 	# Application launcher
-	$launcher bemenu-run
+	$launcher bemenu-run -p exec --no-exec | xargs swaymsg exec --
 
 	# Interactive menu
-	$menu bemenu
+	$menu bemenu -p menu
 
 	# Font
 	$font Terminus
