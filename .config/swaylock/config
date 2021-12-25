@@ -3,7 +3,7 @@ font-size=16
 show-failed-attempts
 daemonize
 hide-keyboard-layout
-color=282828a0
+color=282828
 
 separator-color=282828
 layout-bg-color=d3869b
