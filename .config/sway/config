@@ -52,17 +52,19 @@ titlebar_border_thickness 0
 titlebar_padding 10 1
 
 ### Output configuration
+# See `man 5 sway-output`
 
 # Random wallpaper
 output * bg `find ~/.wallpaper -type f | shuf -n 1` fill
 
 ### Idle configuration
+# See `man swayidle`
 
 # Start idle tracker
 exec swayidle -w \
-	timeout 600 swaylock \
-	timeout 900 'swaymsg "output * dpms off"' \
+	timeout 600 'swaymsg "output * dpms off"' \
 		resume 'swaymsg "output * dpms on"' \
+	timeout 620 swaylock \
 	before-sleep swaylock
 
 ### Input configuration
@@ -285,8 +287,8 @@ mode "config" {
 		p exec doas -n poweroff; mode "default"
 		r exec doas -n reboot; mode "default"
 
-		# Lock screen
-		l exec swaylock; mode "default"
+		# Enter idle ("l" for "lock")
+		--release l exec pkill -USR1 swayidle; mode "default"
 
 		# Brightness
 		b exec light -A 5
