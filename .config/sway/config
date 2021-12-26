@@ -96,6 +96,60 @@ input type:touchpad {
 	natural_scroll enabled
 }
 
+### Apperance
+
+# Colors (gruvbox theme)
+set {
+	$light #ebdbb2
+	$dark #282828
+	$focus #458588
+	$inact #689d6a
+	$unfoc $dark
+	$urgent #b8bb26
+	$alpha e0
+}
+
+# Border colors (see `man 5 sway`)
+# class			border	bg	text	indic	child_border
+client.focused		$focus	$focus	$light	$light	$focus
+client.focused_inactive $inact	$inact	$light	$light	$inact
+client.unfocused	$unfoc	$unfoc	$light	$light	$unfoc
+client.urgent		$urgent	$urgent	$light	$light	$urgent
+
+# Set cursor theme
+seat seat0 xcursor_theme Adwaita 24
+
+# Set GTK theme
+exec_always gsettings set org.gnome.desktop.interface {
+	gtk-theme 'Adwaita'
+	icon-theme 'Adwaita'
+	gtk-color-scheme 'dark'
+	font-name "$font $font_size"
+	monospace-font-name "$font $font_size"
+	cursor-theme 'Adwaita'
+	cursor-size '24'
+}
+
+# Status bar (see `man 5 sway-bar`)
+bar {
+	font $font $font_size
+	separator_symbol ' | '
+	position top
+	status_command i3status
+	status_padding 0
+	status_edge_padding 12
+	mode dock
+	colors {
+		separator $light
+		background $dark$alpha
+		statusline $light
+		focused_workspace $focus $focus $light
+		active_workspace $unfoc $unfoc $light
+		inactive_workspace $dark$alpha $dark$alpha $light
+		urgent_workspace $urgent $urgent $dark
+	}
+}
+
 ### Key bindings
 
 # Run file opener script
@@ -113,8 +167,21 @@ bindsym --to-code $mod+o exec \
 
 # Make a screenshot and copy to clipboard
 bindsym --to-code {
-	$mod+p exec grim -| wl-copy --type image/png # Full screen
-	$mod+Shift+p exec grim -g "$(slurp)" - | wl-copy -t image/png # Area
+	# Full screen
+	$mod+p exec grim - | wl-copy --type image/png
+
+	# Area
+	$mod+Shift+p exec swaymsg -t get_tree | jq -r \
+		'.. | select(.pid? and .visible?) | .rect | \
+			"\(.x),\(.y) \(.width)x\(.height)"' | \
+		slurp -b "$dark$alpha" -c "$light" -B "$focus$alpha" | \
+		grim -g- - | wl-copy -t image/png
+
+	# Current view
+	$mod+Ctrl+p exec swaymsg -t get_tree | jq -r \
+		'.. | select(.pid? and .focused?) | .rect | \
+			"\(.x),\(.y) \(.width)x\(.height)"' | \
+		grim -g- - | wl-copy -t image/png
 }
 
 # Media keys
@@ -310,60 +377,6 @@ mode "config" {
 	}
 }
 bindsym --to-code $mod+c mode "config"
-
-### Apperance
-
-# Colors (gruvbox theme)
-set {
-	$light #ebdbb2
-	$dark #282828
-	$darktransparent #282828e0
-	$focus #458588
-	$inact #689d6a
-	$unfoc $dark
-	$urgent #b8bb26
-}
-
-# Border colors (see `man 5 sway`)
-# class			border	bg	text	indic	child_border
-client.focused		$focus	$focus	$light	$light	$focus
-client.focused_inactive $inact	$inact	$light	$light	$inact
-client.unfocused	$unfoc	$unfoc	$light	$light	$unfoc
-client.urgent		$urgent	$urgent	$light	$light	$urgent
-
-# Set cursor theme
-seat seat0 xcursor_theme Adwaita 24
-
-# Set GTK theme
-exec_always gsettings set org.gnome.desktop.interface {
-	gtk-theme 'Adwaita'
-	icon-theme 'Adwaita'
-	gtk-color-scheme 'dark'
-	font-name "$font $font_size"
-	monospace-font-name "$font $font_size"
-	cursor-theme 'Adwaita'
-	cursor-size '24'
-}
-
-# Status bar (see `man 5 sway-bar`)
-bar {
-	font $font $font_size
-	separator_symbol ' | '
-	position top
-	status_command i3status
-	status_padding 0
-	status_edge_padding 12
-	mode dock
-	colors {
-		separator $light
-		background $darktransparent
-		statusline $light
-		focused_workspace $focus $focus $light
-		active_workspace $unfoc $unfoc $light
-		inactive_workspace $darktransparent $darktransparent $light
-		urgent_workspace $urgent $urgent $dark
-	}
-}
 
 ### Service
 
