@@ -1,0 +1,44 @@
+auto-reload yes
+reload-time 120
+reload-threads 100
+
+download-retries 5
+download-timeout 60
+
+bind-key j down
+bind-key k up
+bind-key j next articlelist
+bind-key k prev articlelist
+bind-key J next-feed articlelist
+bind-key K prev-feed articlelist
+bind-key G end
+bind-key g home
+bind-key d pagedown
+bind-key u pageup
+bind-key l open
+bind-key h quit
+bind-key a toggle-article-read
+bind-key n next-unread
+bind-key N prev-unread
+bind-key D pb-download
+bind-key U show-urls
+bind-key x pb-delete
+
+browser "xdg-open %u"
+
+# based on /usr/share/doc/newsboat/contrib/colorschemes/gruvbox
+color background	color223	default
+color listnormal	color4		default
+color listnormal_unread	color2		default
+color listfocus		color223	color237	bold
+color listfocus_unread	color223	color237	bold
+color info		color8		color0
+color article		color223	default
+
+# highlights
+highlight article "^(Feed|Link):.*$" color11 default bold
+highlight article "^(Title|Date|Author):.*$" color11 default bold
+highlight article "https?://[^ ]+" color2 default underline
+highlight article "\\[[0-9]+\\]" color2 default bold
+highlight article "\\[image\\ [0-9]+\\]" color2 default bold
+highlight feedlist "^─.*$" color6 color6 bold
