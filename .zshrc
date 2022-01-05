@@ -10,7 +10,7 @@ compinit
 
 source "$HOME"/.zshtheme
 
-alias ls='ls -hp --color=auto'
+alias ls='ls -hF --color=auto'
 
 if [ -e /usr/share/fzf/key-bindings.zsh ]; then
 	source /usr/share/fzf/key-bindings.zsh
