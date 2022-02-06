@@ -7,10 +7,10 @@ set {
 	$mod Mod4
 
 	# Home row direction keys, like vi
-	$left h
-	$down j
-	$up k
-	$right l
+	$left	h
+	$down	j
+	$up	k
+	$right	l
 
 	# Terminal emulator
 	$term footclient
@@ -110,50 +110,67 @@ input type:touchpad {
 
 # Colors (gruvbox theme)
 set {
-	$light #ebdbb2
-	$dark #282828
-	$focus #458588
-	$inact #689d6a
-	$unfoc $dark
-	$urgent #b8bb26
-	$alpha e0
+	$black		#282828
+	$dark_red	#cc241d
+	$dark_green	#98971a
+	$dark_yellow	#d79921
+	$dark_blue	#458588
+	$dark_purple	#b16286
+	$dark_aqua	#689d6a
+	$dark_gray	#a89984
+	$bright_gray	#928374
+	$bright_red	#fb4934
+	$bright_green	#b8bb26
+	$bright_yellow	#fabd2f
+	$bright_blue	#83a598
+	$bright_purple	#d3869b
+	$bright_aqua	#8ec07c
+	$white		#ebdbb2
+
+	$a		e0
+	$focused	$bright_aqua
+	$inactive	$dark_purple
+	$unfocused	$black
+	$urgent		$dark_yellow
 }
 
 # Border colors (see `man 5 sway`)
-# class			border	bg	text	indic	child_border
-client.focused		$focus	$focus	$light	$light	$focus
-client.focused_inactive $inact	$inact	$light	$light	$inact
-client.unfocused	$unfoc	$unfoc	$light	$light	$unfoc
-client.urgent		$urgent	$urgent	$light	$light	$urgent
+# class			border		titlebar bg	text	indicator
+client.focused		$focused	$focused	$black	$bright_red
+client.focused_inactive $inactive	$inactive	$white	$dark_red
+client.unfocused	$unfocused	$unfocused	$white	$dark_red
+client.urgent		$urgent		$urgent		$black	$dark_red
 
 # Set GTK theme
 exec_always gsettings set org.gnome.desktop.interface {
-	gtk-theme 'Adwaita'
-	icon-theme 'Adwaita'
-	gtk-color-scheme 'dark'
-	font-name "$font $font_size"
-	monospace-font-name "$font $font_size"
-	cursor-theme 'Adwaita'
-	cursor-size '24'
+	gtk-theme		'Adwaita'
+	icon-theme		'Adwaita'
+	gtk-color-scheme	'dark'
+	font-name		"$font $font_size"
+	monospace-font-name	"$font $font_size"
+	cursor-theme		'Adwaita'
+	cursor-size		'24'
 }
 
 # Status bar (see `man 5 sway-bar`)
 bar {
 	font $font $font_size
-	separator_symbol ' | '
+	separator_symbol ' / '
 	position top
 	status_command i3status
 	status_padding 0
 	status_edge_padding 12
 	mode dock
 	colors {
-		separator $light
-		background $dark$alpha
-		statusline $light
-		focused_workspace $focus $focus $light
-		active_workspace $unfoc $unfoc $light
-		inactive_workspace $dark$alpha $dark$alpha $light
-		urgent_workspace $urgent $urgent $dark
+		separator	$inactive
+		background	$black$a
+		statusline	$white
+
+		# class			color		background	text
+		focused_workspace	$focused 	$focused	$black
+		active_workspace	$inactive	$inactive	$white
+		inactive_workspace	$unfocused$a	$unfocused$a	$white
+		urgent_workspace	$urgent		$urgent		$black
 	}
 }
 
@@ -181,7 +198,7 @@ bindsym --to-code {
 	$mod+Shift+p exec swaymsg -t get_tree | jq -r \
 		'.. | select(.pid? and .visible?) | .rect | \
 			"\(.x),\(.y) \(.width)x\(.height)"' | \
-		slurp -b "$dark$alpha" -c "$light" -B "$focus$alpha" | \
+		slurp -b "$unfocused$a" -c "$focused" -B "$inactive$a" | \
 		grim -g- - | wl-copy -t image/png
 
 	# Current view
