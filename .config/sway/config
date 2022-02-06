@@ -70,6 +70,16 @@ exec swayidle -w \
 ### Input configuration
 # See `man 5 sway-input`
 
+# Seat configuration
+seat seat0 {
+	xcursor_theme Adwaita 24
+	idle_wake keyboard
+	hide_cursor {
+		2000
+		when-typing enabled
+	}
+}
+
 # Mouse
 input type:pointer {
 	accel_profile flat
@@ -115,9 +125,6 @@ client.focused		$focus	$focus	$light	$light	$focus
 client.focused_inactive $inact	$inact	$light	$light	$inact
 client.unfocused	$unfoc	$unfoc	$light	$light	$unfoc
 client.urgent		$urgent	$urgent	$light	$light	$urgent
-
-# Set cursor theme
-seat seat0 xcursor_theme Adwaita 24
 
 # Set GTK theme
 exec_always gsettings set org.gnome.desktop.interface {
