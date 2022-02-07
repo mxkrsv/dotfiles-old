@@ -31,10 +31,6 @@ require('packer').startup(function()
     run = ':TSUpdate'
   }
   use 'neovim/nvim-lspconfig'
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
-  }
   use 'hrsh7th/nvim-compe'
   use {
     'hoob3rt/lualine.nvim',
@@ -154,12 +150,6 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
-
--- Setup telescope.nvim
-map('n', '<leader>ff', '<cmd>Telescope find_files<cr>')
-map('n', '<leader>fg', '<cmd>Telescope live_grep<cr>')
-map('n', '<leader>fb', '<cmd>Telescope buffers<cr>')
-map('n', '<leader>fh', '<cmd>Telescope help_tags<cr>')
 
 -- Setup statusline
 o.showmode = false -- Mode is already shown on lualine
