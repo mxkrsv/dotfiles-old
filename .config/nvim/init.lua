@@ -25,7 +25,7 @@ o.textwidth = 80
 require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
-  use {'npxbr/gruvbox.nvim', requires = {'rktjmp/lush.nvim'}}
+  use {'begss/gruvbox.nvim', requires = {'rktjmp/lush.nvim'}}
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
