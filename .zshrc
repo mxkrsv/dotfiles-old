@@ -1,7 +1,7 @@
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
-setopt autocd extendedglob nomatch notify pipefail beep
+setopt nomatch notify pipefail beep
 bindkey -v
 zstyle :compinstall filename '${HOME}/.zshrc'
 
