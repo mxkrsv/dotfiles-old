@@ -1,0 +1,53 @@
+# pretty beautiful aerc styleset (part of git.sr.ht/~begs/dotfiles)
+# see aerc-styelsets(7)
+# should work with any terminal colorscheme, but was designed for gruvbox
+# terminal colors are preferred, but hex is used for grayscale
+
+*.default=true
+
+# present in 'Send this email?' dialog
+title.fg=yellow
+title.bg=#303030
+title.bold=true
+
+# used in setup and in 'From:' etc
+header.bold=true
+header.fg=purple
+
+# requires attention
+*error.bold=true
+*error.fg=red
+*error.blink=true
+*warning.fg=yellow
+*warning.blink=true
+*success.fg=green
+
+# statusline
+statusline_default.fg=gray
+statusline_*.bg=#303030
+
+# message list colors
+msglist_deleted.fg=gray
+msglist_unread.fg=green
+msglist_read.fg=blue
+msglist_marked.fg=yellow
+msglist_marked.reverse=true
+
+# inbox etc
+dirlist_default.fg=gray
+
+# highlight selected item
+*.selected.bg=#3a3a3a
+*.selected.fg=white
+*.selected.bold=true
+
+# primarily used in account setup
+selector_default.fg=gray
+selector_chooser.bold=true
+selector_focused.bg=#3a3a3a
+selector_focused.bold=true
+
+# command completion
+completion_default.bg=#303030
+completion_gutter.bg=#303030
+completion_pill.bg=aqua
