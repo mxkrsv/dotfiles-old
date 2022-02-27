@@ -14,6 +14,9 @@ title.bold=true
 header.bold=true
 header.fg=purple
 
+# decorative lines
+border.fg=blue
+
 # requires attention
 *error.bold=true
 *error.fg=red
