@@ -25,7 +25,7 @@ o.textwidth = 80
 require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
-  use {'begss/gruvbox.nvim', requires = {'rktjmp/lush.nvim'}}
+  use 'ellisonleao/gruvbox.nvim'
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
@@ -45,8 +45,8 @@ g.gruvbox_bold = true
 g.gruvbox_italic = false
 g.gruvbox_invert_selection = false
 g.gruvbox_contrast_dark = 'medium'
-g.gruvbox_transparent_bg = true
 execute 'colorscheme gruvbox'
+execute 'hi Normal guibg=none'
 
 -- Setup completion
 o.completeopt = "menuone,noselect"
