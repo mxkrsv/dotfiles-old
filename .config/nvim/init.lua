@@ -9,33 +9,11 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
--- Install packer.nvim automatically if not installed yet
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
-  execute 'packadd packer.nvim'
-end
-
 vim.highlight.on_yank = true
 o.mouse = 'a'
 o.number = true
 o.relativenumber = true
 o.textwidth = 80
-
-require('packer').startup(function()
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
-  use 'ellisonleao/gruvbox.nvim'
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
-  }
-  use 'neovim/nvim-lspconfig'
-  use {
-    'hoob3rt/lualine.nvim',
-    --requires = {'kyazdani42/nvim-web-devicons', opt = true}
-  }
-end)
 
 -- Setup theme
 o.termguicolors = true
@@ -49,7 +27,6 @@ execute 'hi Normal guibg=none'
 
 -- Setup treesitter
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = 'maintained',
   highlight = {enable = true},
   incremental_selection = {
     enable = true,
