@@ -1,10 +1,11 @@
+# article downloading options
 auto-reload yes
 reload-time 120
 reload-threads 100
-
 download-retries 5
 download-timeout 60
 
+# vi-like bindings
 bind-key j down
 bind-key k up
 bind-key j next articlelist
@@ -24,7 +25,11 @@ bind-key D pb-download
 bind-key U show-urls
 bind-key x pb-delete
 
+# automatically choose browser on XDG-compatible environments
 browser "xdg-open %u"
+
+# limit width so articles are more readable
+text-width 80
 
 # based on /usr/share/doc/newsboat/contrib/colorschemes/gruvbox
 color background	color223	default
