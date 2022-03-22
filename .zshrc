@@ -1,10 +1,5 @@
-# history settings
-HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
-
 # general options
-setopt nomatch notify pipefail beep
+setopt nomatch notify pipefail
 
 # vi mode
 bindkey -v
@@ -18,11 +13,6 @@ bindkey "^?" backward-delete-char
 bindkey "^W" backward-kill-word
 bindkey "^H" backward-delete-char
 bindkey "^U" backward-kill-line
-
-# completion
-zstyle :compinstall filename '${HOME}/.zshrc'
-autoload -Uz compinit
-compinit
 
 # enable theme
 source "$HOME"/.zshtheme
