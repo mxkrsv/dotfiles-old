@@ -1,5 +1,5 @@
 # general options
-setopt nomatch notify pipefail
+setopt nomatch notify pipefail shwordsplit
 
 # vi mode
 bindkey -v
