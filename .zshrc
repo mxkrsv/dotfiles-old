@@ -20,7 +20,13 @@ source "$HOME"/.zshtheme
 # beautiful ls
 alias ls='ls -hF --color=auto'
 
-# enable fzf if found
-if [ -e /usr/share/fzf/key-bindings.zsh ]; then
-	source /usr/share/fzf/key-bindings.zsh
-fi
+# enable some plugins if found
+local plugins="/usr/share/fzf/key-bindings.zsh"
+for plugin in zsh-syntax-highlighting zsh-autosuggestions; do
+	plugins="$plugins /usr/share/zsh/plugins/$plugin/$plugin.zsh"
+done
+for plugin in $plugins; do
+	if [ -e $plugin ]; then
+		source $plugin
+	fi
+done
