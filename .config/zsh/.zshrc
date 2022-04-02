@@ -15,7 +15,7 @@ bindkey "^H" backward-delete-char
 bindkey "^U" backward-kill-line
 
 # enable theme
-source "$HOME"/.zshtheme
+source "$ZDOTDIR"/.zshtheme
 
 # beautiful ls
 alias ls='ls -hF --color=auto'
