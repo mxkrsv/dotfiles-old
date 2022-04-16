@@ -51,6 +51,9 @@ font $font Bold $font_size
 titlebar_border_thickness 0
 titlebar_padding 10 1
 
+# Switch to previous workspace if selected current again
+workspace_auto_back_and_forth yes
+
 ### Output configuration
 # See `man 5 sway-output`
 
@@ -296,8 +299,30 @@ bindsym {
 	$mod+Shift+8 move container to workspace 8
 	$mod+Shift+9 move container to workspace 9
 	$mod+Shift+0 move container to workspace 10
-	# Note: workspaces can have any name you want, not just numbers.
-	# We just use 1-10 as the default.
+
+	# Relative focus movement
+	$mod+Ctrl+$up workspace prev_on_output
+	$mod+Ctrl+$down workspace next_on_output
+	# Same with arrow keys
+	$mod+Ctrl+Up workspace prev_on_output
+	$mod+Ctrl+Down workspace next_on_output
+
+	# Relative container movement
+	$mod+Ctrl+Shift+$up move container to workspace prev_on_output
+	$mod+Ctrl+Shift+$down move container to workspace next_on_output
+	# Same with arrow keys
+	$mod+Ctrl+Shift+Up move container to workspace prev_on_output
+	$mod+Ctrl+Shift+Down move container to workspace next_on_output
+}
+
+# Outputs
+bindsym {
+	# Move the focused workspace between outputs
+	$mod+Ctrl+$left move workspace to output left
+	$mod+Ctrl+$right move workspace to output right
+	# Same with arrow keys
+	$mod+Ctrl+Left move workspace to output left
+	$mod+Ctrl+Right move workspace to output right
 }
 
 # Layout stuff
@@ -315,6 +340,8 @@ bindsym --to-code {
 
 	# Make the current focus fullscreen
 	$mod+f fullscreen
+	# Make the current focus fullscreen across all outputs
+	$mod+Shift+f fullscreen global
 
 	# Toggle the current focus between tiling and floating mode
 	$mod+Shift+space floating toggle
