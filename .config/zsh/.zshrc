@@ -6,7 +6,6 @@ bindkey -v
 KEYTIMEOUT=5
 
 # fix some keys behavior for vi mode
-bindkey '^R' history-incremental-search-backward
 bindkey '^P' up-history
 bindkey '^N' down-history
 bindkey "^?" backward-delete-char
