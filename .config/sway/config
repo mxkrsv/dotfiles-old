@@ -429,7 +429,7 @@ bindsym --to-code $mod+c mode "config"
 ### Service
 
 # Autostart
-exec {
+exec_always {
 	# D-Bus session
 	pgrep -x dbus-daemon || dbus-daemon --session \
 		--address=unix:path=$XDG_RUNTIME_DIR/bus &
