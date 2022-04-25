@@ -58,7 +58,7 @@ workspace_auto_back_and_forth yes
 # See `man 5 sway-output`
 
 # Random wallpaper
-output * bg `find ~/.wallpaper -type f | shuf -n 1` fill
+output * bg `find ~/.wallpaper -type f | shuf -n 1` fill #282828
 
 ### Idle configuration
 # See `man swayidle`
