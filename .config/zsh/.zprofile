@@ -14,6 +14,9 @@ export BEMENU_OPTS="-sicn --scrollbar 'autohide'
 	--sb '#83a598' --sf '#282828'
 	--scb '#282828e8' --scf '#b16286'"
 
+# setting it in profile perfectly suits usecase (needed for theme)
+export DEFAULT_USER="$(whoami)"
+
 if [ -z "$XDG_RUNTIME_DIR" ]; then
 	export XDG_RUNTIME_DIR="/tmp/$UID-runtime-dir"
 	if ! [ -d "$XDG_RUNTIME_DIR" ]; then
