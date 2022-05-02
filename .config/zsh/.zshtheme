@@ -16,6 +16,13 @@ typeset -aHg AGNOSTER_PROMPT_SEGMENTS=(
 	prompt_end
 )
 
+typeset -aHg AGNOSTER_PROMPT_SEGMENTS_SHORT=(
+	prompt_status
+	prompt_context
+	prompt_time
+	prompt_end
+)
+
 ### Segment drawing
 # A few utility functions to make it easy and re-usable to draw segmented prompts
 
@@ -102,6 +109,11 @@ prompt_dir() {
 	prompt_segment blue $PRIMARY_FG ' %~ '
 }
 
+# Time: current time
+prompt_time() {
+	prompt_segment cyan $PRIMARY_FG " $(date '+%R') "
+}
+
 # Status:
 # - was there an error
 # - am I root
@@ -139,6 +151,21 @@ prompt_agnoster_precmd() {
 	PROMPT='%{%f%b%k%}$(prompt_agnoster_main) '
 }
 
+## Short prompt
+prompt_agnoster_short() {
+	RETVAL=$?
+	CURRENT_BG='NONE'
+	for prompt_segment in "${AGNOSTER_PROMPT_SEGMENTS_SHORT[@]}"; do
+		[[ -n $prompt_segment ]] && $prompt_segment
+	done
+}
+
+# Replace long prompt with short on line finish (transient prompt)
+zle-line-finish() {
+	PROMPT='%{%f%b%k%}$(prompt_agnoster_short) '
+	zle .reset-prompt 2>/dev/null
+}
+
 prompt_agnoster_setup() {
 	autoload -Uz add-zsh-hook
 	autoload -Uz vcs_info
@@ -146,6 +173,9 @@ prompt_agnoster_setup() {
 	prompt_opts=(cr subst percent)
 
 	add-zsh-hook precmd prompt_agnoster_precmd
+
+	zle -N zle-line-finish
+	trap 'zle-line-finish; return 130' INT
 
 	zstyle ':vcs_info:*' enable git
 	zstyle ':vcs_info:*' check-for-changes false
