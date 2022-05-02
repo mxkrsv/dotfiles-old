@@ -183,21 +183,24 @@ end
 
 -- Setup statusline
 o.showmode = false -- Mode is already shown on lualine
+local lualine_options = {
+  theme = 'gruvbox',
+  disabled_filetypes = {},
+  always_divide_middle = true,
+}
+if os.getenv("TERM") == "linux" then
+  lualine_options.icons_enabled = false
+  lualine_options.component_separators = { left = '', right = '' }
+  lualine_options.section_separators = { left = '', right = '' }
+end -- disable powerline if on tty
 require'lualine'.setup {
-  options = {
-    icons_enabled = false,
-    theme = 'gruvbox',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
-    disabled_filetypes = {},
-    always_divide_middle = true,
-  },
+  options = lualine_options,
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch', 'diff',
                   {'diagnostics', sources={'nvim_diagnostic', 'coc'}}},
     lualine_c = {{'filename', path = 1, shorting_target = 0}},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_x = {'encoding', {'fileformat', icons_enabled = false}, 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
   },
