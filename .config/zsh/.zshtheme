@@ -89,7 +89,7 @@ prompt_context() {
 	local user=`whoami`
 
 	if [[ "$user" != "$DEFAULT_USER" || -n "$SSH_CONNECTION" ]]; then
-		prompt_segment $PRIMARY_FG default " %(!.%{%F{yellow}%}.)$user@%m "
+		prompt_segment magenta $PRIMARY_FG " %(!.%{%F{default}%}.)$user@%m "
 	fi
 }
 
@@ -142,10 +142,10 @@ prompt_status() {
 	local symbols
 	symbols=()
 	[[ $RETVAL -ne 0 ]] && symbols+="%{%F{red}%}$CROSS $RETVAL"
-	[[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}$LIGHTNING"
-	[[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{cyan}%}$GEAR"
+	[[ $UID -eq 0 ]] && symbols+="%{%F{default}%}$LIGHTNING"
+	[[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{$PRIMARY_FG}%}$GEAR"
 
-	[[ -n "$symbols" ]] && prompt_segment $PRIMARY_FG default " $symbols "
+	[[ -n "$symbols" ]] && prompt_segment cyan default " $symbols "
 }
 
 # Display current virtual environment
