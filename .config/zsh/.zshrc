@@ -18,3 +18,6 @@ source "$ZDOTDIR"/.zshtheme
 
 # beautiful ls
 alias ls='ls -hF --color=auto'
+
+# enable colors
+autoload -Uz colors && colors
