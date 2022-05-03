@@ -8,18 +8,21 @@ setopt prompt_subst
 ### Segments of the prompt, default order declaration
 
 typeset -aHg AGNOSTER_PROMPT_SEGMENTS=(
-	prompt_status
-	prompt_context
 	prompt_virtualenv
 	prompt_dir
 	prompt_git
+	prompt_end
+
+	prompt_newline
+
+	prompt_status
+	prompt_context
 	prompt_end
 )
 
 typeset -aHg AGNOSTER_PROMPT_SEGMENTS_SHORT=(
 	prompt_status
 	prompt_context
-	prompt_time
 	prompt_end
 )
 
@@ -66,6 +69,9 @@ prompt_segment() {
 
 # End the prompt, closing any open segments
 prompt_end() {
+	# beautiful fallback color (useful in empty prompt)
+	[ "$CURRENT_BG" != NONE ] || CURRENT_BG=cyan
+
 	if [[ -n $CURRENT_BG ]]; then
 		print -n "%{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
 	else
@@ -120,6 +126,12 @@ prompt_dir() {
 # Time: current time
 prompt_time() {
 	prompt_segment cyan $PRIMARY_FG " $(date '+%R') "
+}
+
+# Newline: printf \n
+prompt_newline() {
+	printf '\n'
+	CURRENT_BG=NONE
 }
 
 # Status:
