@@ -118,9 +118,15 @@ prompt_git() {
 	fi
 }
 
-# Dir: current working directory
+# Dir: current working directory plus current vi mode
 prompt_dir() {
-	prompt_segment blue $PRIMARY_FG ' %~ '
+	local color
+	case "$VI_KEYMAP" in
+		vicmd) color=red;;
+		*) color=blue;;
+	esac
+
+	prompt_segment "$color" $PRIMARY_FG ' %~ '
 }
 
 # Time: current time
@@ -186,6 +192,17 @@ zle-line-finish() {
 	zle .reset-prompt 2>/dev/null
 }
 
+## Update vi mode indicator when the keymap changes
+zle-keymap-select() {
+	VI_KEYMAP="$KEYMAP"
+	zle .reset-prompt 2>/dev/null
+}
+
+# Start every prompt in insert mode
+zle-line-init() {
+	zle -K viins
+}
+
 prompt_agnoster_setup() {
 	autoload -Uz add-zsh-hook
 	autoload -Uz vcs_info
@@ -195,6 +212,8 @@ prompt_agnoster_setup() {
 	add-zsh-hook precmd prompt_agnoster_precmd
 
 	zle -N zle-line-finish
+	zle -N zle-keymap-select
+	zle -N zle-line-init
 	trap 'zle-line-finish; return 130' INT
 
 	zstyle ':vcs_info:*' enable git
