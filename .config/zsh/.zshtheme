@@ -26,6 +26,24 @@ typeset -aHg AGNOSTER_PROMPT_SEGMENTS_SHORT=(
 	prompt_end
 )
 
+## Colors (8-bit palette)
+local black=0
+local red=1
+local green=2
+local yellow=3
+local blue=4
+local purple=5
+local aqua=6
+local gray=7
+local brgray=8
+local brred=9
+local brgreen=10
+local bryellow=11
+local brblue=12
+local brpurple=13
+local braqua=14
+local white=15
+
 ### Segment drawing
 # A few utility functions to make it easy and re-usable to draw segmented prompts
 
@@ -70,7 +88,7 @@ prompt_segment() {
 # End the prompt, closing any open segments
 prompt_end() {
 	# beautiful fallback color (useful in empty prompt)
-	[ "$CURRENT_BG" != NONE ] || CURRENT_BG=cyan
+	[ "$CURRENT_BG" != NONE ] || CURRENT_BG="$braqua"
 
 	if [[ -n $CURRENT_BG ]]; then
 		print -n "%{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
@@ -89,7 +107,7 @@ prompt_context() {
 	local user=`whoami`
 
 	if [[ "$user" != "$DEFAULT_USER" || -n "$SSH_CONNECTION" ]]; then
-		prompt_segment magenta $PRIMARY_FG " %(!.%{%F{default}%}.)$user@%m "
+		prompt_segment "$aqua" $PRIMARY_FG " %(!.%{%F{default}%}.)$user@%m "
 	fi
 }
 
@@ -102,10 +120,10 @@ prompt_git() {
 	ref="$vcs_info_msg_0_"
 	if [[ -n "$ref" ]]; then
 		if is_dirty; then
-			color=yellow
+			color="$bryellow"
 			ref="${ref} $PLUSMINUS "
 		else
-			color=green
+			color="$brgreen"
 			ref="${ref} "
 		fi
 		if [[ "${ref/.../}" == "$ref" ]]; then
@@ -122,8 +140,8 @@ prompt_git() {
 prompt_dir() {
 	local color
 	case "$VI_KEYMAP" in
-		vicmd) color=red;;
-		*) color=blue;;
+		vicmd) color="$brred";; # 9 is bright red
+		*) color="$blue";;
 	esac
 
 	prompt_segment "$color" $PRIMARY_FG ' %~ '
@@ -147,11 +165,11 @@ prompt_newline() {
 prompt_status() {
 	local symbols
 	symbols=()
-	[[ $RETVAL -ne 0 ]] && symbols+="%{%F{red}%}$CROSS $RETVAL"
+	[[ $RETVAL -ne 0 ]] && symbols+="%{%F{$red}%}$CROSS $RETVAL"
 	[[ $UID -eq 0 ]] && symbols+="%{%F{default}%}$LIGHTNING"
 	[[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{$PRIMARY_FG}%}$GEAR"
 
-	[[ -n "$symbols" ]] && prompt_segment cyan default " $symbols "
+	[[ -n "$symbols" ]] && prompt_segment "$white" default " $symbols "
 }
 
 # Display current virtual environment
