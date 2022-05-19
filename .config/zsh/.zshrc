@@ -21,3 +21,6 @@ alias ls='ls -hF --color=auto'
 
 # enable colors
 autoload -Uz colors && colors
+
+# default black comments are invisible on black bg
+ZSH_HIGHLIGHT_STYLES[comment]=fg=cyan,bold
