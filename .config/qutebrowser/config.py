@@ -21,7 +21,7 @@ c.colors.webpage.preferred_color_scheme = "dark"
 c.content.autoplay = False
 
 # Source theme config file
-config.source('base16-gruvbox-dark-medium.config.py')
+config.source('gruvbox.py')
 
 # qute-pass bindings
 basecmd = 'spawn --userscript qute-pass -M gopass -d "bemenu -p pass"'
