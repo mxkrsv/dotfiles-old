@@ -111,35 +111,35 @@ input type:touchpad {
 # Colors (gruvbox theme)
 set {
 	$black		#282828
-	$dark_red	#cc241d
-	$dark_green	#98971a
-	$dark_yellow	#d79921
-	$dark_blue	#458588
-	$dark_purple	#b16286
-	$dark_aqua	#689d6a
-	$dark_gray	#a89984
-	$bright_gray	#928374
-	$bright_red	#fb4934
-	$bright_green	#b8bb26
-	$bright_yellow	#fabd2f
-	$bright_blue	#83a598
-	$bright_purple	#d3869b
-	$bright_aqua	#8ec07c
+	$red		#cc241d
+	$green		#98971a
+	$yellow		#d79921
+	$blue		#458588
+	$purple		#b16286
+	$aqua		#689d6a
+	$gray		#a89984
+	$brgray		#928374
+	$brred		#fb4934
+	$brgreen	#b8bb26
+	$bryellow	#fabd2f
+	$brblue		#83a598
+	$brpurple	#d3869b
+	$braqua		#8ec07c
 	$white		#ebdbb2
 
 	$a		e0
-	$focused	$bright_aqua
-	$inactive	$dark_purple
+	$focused	$braqua
+	$inactive	$purple
 	$unfocused	$black
-	$urgent		$dark_yellow
+	$urgent		$yellow
 }
 
 # Border colors (see `man 5 sway`)
 # class			border		titlebar bg	text	indicator
-client.focused		$focused	$focused	$black	$bright_red
-client.focused_inactive $inactive	$inactive	$white	$dark_red
-client.unfocused	$unfocused	$unfocused	$white	$dark_red
-client.urgent		$urgent		$urgent		$black	$dark_red
+client.focused		$focused	$focused	$black	$brred
+client.focused_inactive $inactive	$inactive	$white	$red
+client.unfocused	$unfocused	$unfocused	$white	$red
+client.urgent		$urgent		$urgent		$black	$red
 
 # Set GTK theme
 exec_always gsettings set org.gnome.desktop.interface {
