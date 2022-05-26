@@ -21,7 +21,6 @@ c.colors.webpage.preferred_color_scheme = "dark"
 c.content.autoplay = False
 
 # Source theme config file
-# config.source('base16-nord.config.py')
 config.source('base16-gruvbox-dark-medium.config.py')
 
 # qute-pass bindings
