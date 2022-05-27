@@ -24,3 +24,6 @@ autoload -Uz colors && colors
 
 # default black comments are invisible on black bg
 ZSH_HIGHLIGHT_STYLES[comment]=fg=cyan,bold
+
+# default command requires findutils
+FZF_ALT_C_COMMAND="find -L . -mindepth 1 -type d -print 2>/dev/null | cut -b3-"
