@@ -1,0 +1,88 @@
+bar:
+  height: 26
+  location: top
+  background: 282828e0
+  foreground: ebdbb2ff
+  right-margin: 10
+  spacing: 10
+  font: Terminus:size=14
+
+  left:
+    - i3:
+        content:
+          "":
+            map:
+              tag: state
+              default:
+                string:
+                  text: "{name}"
+                  margin: 6
+                  on-click: "swaymsg -q workspace {name}"
+              values:
+                focused:
+                  string:
+                    text: "{name}"
+                    margin: 6
+                    on-click: "swaymsg -q workspace {name}"
+                    deco: {background: {color: 8ec07cff}}
+                    foreground: 282828ff
+
+  center:
+    - foreign-toplevel:
+        content:
+          map:
+            tag: activated
+            values:
+              false: {empty: {}}
+              true:
+                - string: {text: "{title}"}
+
+  right:
+    - network:
+        name: wlan0
+        content: 
+          map:
+            tag: carrier
+            values:
+              true: {string: {text: "{name}: {ipv4} ({ssid} {signal})"}}
+              false: {empty: {}}
+
+    - network:
+        name: usb0
+        content: 
+          map:
+            tag: carrier
+            values:
+              true: {string: {text: "{name}: {ipv4}"}}
+              false: {empty: {}}
+
+    - network:
+        name: eth0
+        content: 
+          map:
+            tag: carrier
+            values:
+              true: {string: {text: "{name}: {ipv4}"}}
+              false: {empty: {}}
+
+    - alsa:
+        card: default
+        mixer: Master
+        content:
+          map:
+            tag: muted
+            values:
+              false: {string: {text: "♪: {percent}%"}}
+              true: {string: {text: "♪: muted"}}
+
+    - cpu:
+        interval: 2500
+        content: {string: {text: "cpu: {cpu}%"}}
+
+    - mem:
+        interval: 2500
+        content: {string: {text: "mem: {percent_used}%"}}
+
+    - clock:
+        date-format: "%y/%m/%d"
+        content: {string: {text: "{date} {time}"}}
