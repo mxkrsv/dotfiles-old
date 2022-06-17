@@ -8,6 +8,8 @@ o.mouse = 'a'
 o.number = true
 o.relativenumber = true
 o.textwidth = 80
+o.cursorline = true
+o.cursorcolumn = true
 
 -- Setup theme
 o.termguicolors = true
