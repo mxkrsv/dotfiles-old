@@ -77,7 +77,7 @@ exec swayidle -w \
 seat seat0 {
 	xcursor_theme Adwaita 24
 	idle_wake keyboard
-	hide_cursor 2000
+	hide_cursor 4000
 }
 
 # Mouse
