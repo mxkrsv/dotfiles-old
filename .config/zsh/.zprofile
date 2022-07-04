@@ -27,7 +27,7 @@ fi
 
 if [ "$(tty)" = "/dev/tty1" ]; then
 	if [ "$(command -v sway)" ]; then
-		exec sway
+		exec sway >/tmp/sway.log 2>&1
 	fi	
 	if [ "$(command -v startx)" ]; then
 		exec startx
