@@ -1,0 +1,7 @@
+#!/bin/sh
+exec /usr/bin/fuzzel --font=Terminus:size=10 --terminal=footclient \
+	--background=282828e0 --text-color=ebdbb2ff --match-color=98971aff \
+	--selection-color=ebdbb2ff --selection-text-color=282828ff \
+	--border-width=2 --border-radius=0 --border-color=8ec07cff \
+	--lines=20 --line-height=12 --width=60 --horizontal-pad=8 \
+	--vertical-pad=4 --inner-pad=4 --launch-prefix='swaymsg exec --' "$@"
