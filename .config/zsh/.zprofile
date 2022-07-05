@@ -5,6 +5,7 @@ export EDITOR=nvim
 export MOZ_ENABLE_WAYLAND=1
 export QT_QPA_PLATFORM=wayland-egl
 export SDL_VIDEODRIVER=wayland
+export PATH="$HOME/bin:$PATH"
 
 # setting it in profile perfectly suits usecase (needed for theme)
 export DEFAULT_USER="$(whoami)"
