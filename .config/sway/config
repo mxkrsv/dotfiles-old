@@ -317,12 +317,19 @@ bindsym {
 
 # Outputs
 bindsym {
-	# Move the focused workspace between outputs
-	$mod+Ctrl+$left move workspace to output left
-	$mod+Ctrl+$right move workspace to output right
+	# Move focus between outputs
+	$mod+Ctrl+$left focus output left
+	$mod+Ctrl+$right focus output right
 	# Same with arrow keys
-	$mod+Ctrl+Left move workspace to output left
-	$mod+Ctrl+Right move workspace to output right
+	$mod+Ctrl+Left focus output left
+	$mod+Ctrl+Right focus output right
+
+	# Move the focused workspace between outputs
+	$mod+Ctrl+Shift+$left move workspace to output left
+	$mod+Ctrl+Shift+$right move workspace to output right
+	# Same with arrow keys
+	$mod+Ctrl+Shift+Left move workspace to output left
+	$mod+Ctrl+Shift+Right move workspace to output right
 }
 
 # Layout stuff
