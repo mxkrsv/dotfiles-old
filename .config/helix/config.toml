@@ -1,0 +1,12 @@
+theme = "gruvbox"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor]
+line-number = "relative"
+# Not yet supported
+# color-modes = true
+# cursorline = true
