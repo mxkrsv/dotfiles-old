@@ -14,6 +14,8 @@ set {
 
 	# Terminal emulator
 	$term footclient
+	# Floating terminal emulator
+	$floating_term $term -a floating_foot
 
 	# Application launcher
 	$launcher fuzzel -P "exec> "
@@ -229,6 +231,8 @@ bindsym --locked {
 bindsym --to-code {
 	# Start a terminal
 	$mod+Return exec $term
+	# Start a floating terminal
+	$mod+Shift+Return exec $floating_term
 
 	# Kill focused window
 	$mod+Shift+q kill
@@ -434,6 +438,9 @@ mode "config" {
 bindsym --to-code $mod+c mode "config"
 
 ### Service
+
+# Per window actions
+for_window [app_id="^floating_foot$"] floating enable
 
 # Autostart
 exec_always {
