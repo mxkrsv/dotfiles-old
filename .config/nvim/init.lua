@@ -10,6 +10,7 @@ o.relativenumber = true
 o.textwidth = 80
 o.cursorline = true
 o.cursorcolumn = true
+o.title = true
 
 -- Setup theme
 o.termguicolors = true
