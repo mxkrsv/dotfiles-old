@@ -63,7 +63,9 @@ case "$TERM" in
 		BRANCH="\ue0a0"
 		;;
 esac
-PLUSMINUS="\u00b1"
+UNSTAGED="±"
+STAGED="+"
+UNTRACKED="?"
 DETACHED="detached"
 CROSS="X"
 LIGHTNING="#"
@@ -114,25 +116,32 @@ prompt_context() {
 # Git: branch/detached head, dirty status
 prompt_git() {
 	local color ref
-	is_dirty() {
-		test -n "$(git status --porcelain --ignore-submodules)"
-	}
 	ref="$vcs_info_msg_0_"
 	if [[ -n "$ref" ]]; then
-		if is_dirty; then
+		color="$brgreen"
+		ref="$ref "
+
+		if echo "$ref" | grep -q "$STAGED\|$UNSTAGED\|$UNTRACKED"; then
 			color="$bryellow"
-			ref="${ref} $PLUSMINUS "
-		else
-			color="$brgreen"
-			ref="${ref} "
 		fi
+
 		if [[ "${ref/.../}" == "$ref" ]]; then
 			ref="$BRANCH $ref"
 		else
 			ref="$DETACHED ${ref/.../}"
 		fi
+
 		prompt_segment $color $PRIMARY_FG
 		print -n " $ref"
+	fi
+}
+
+# Git: check for untracked files in repo
++vi-git-untracked(){
+	if git rev-parse --is-inside-work-tree >/dev/null 2>&1 \
+			&& [[ "$(git ls-files --others --exclude-standard)" ]]
+	then
+		hook_com[staged]+=" $UNTRACKED"
 	fi
 }
 
@@ -235,9 +244,13 @@ prompt_agnoster_setup() {
 	trap 'zle-line-finish; return 130' INT
 
 	zstyle ':vcs_info:*' enable git
-	zstyle ':vcs_info:*' check-for-changes false
-	zstyle ':vcs_info:git*' formats '%b'
-	zstyle ':vcs_info:git*' actionformats '%b (%a)'
+	zstyle ':vcs_info:*' check-for-changes true
+	zstyle ':vcs_info:*' use-simple true
+	zstyle ':vcs_info:*' stagedstr " $STAGED"
+	zstyle ':vcs_info:*' unstagedstr " $UNSTAGED"
+	zstyle ':vcs_info:git*' formats '%b%u%c'
+	zstyle ':vcs_info:git*' actionformats '%b (%a)%u%c'
+	zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 }
 
 prompt_agnoster_setup "$@"
