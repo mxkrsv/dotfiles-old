@@ -6,6 +6,8 @@ bindkey -v
 KEYTIMEOUT=5
 
 # fix some keys behavior for vi mode
+bindkey  "^[[H" beginning-of-line
+bindkey  "^[[F" end-of-line
 bindkey '^P' up-history
 bindkey '^N' down-history
 bindkey "^?" backward-delete-char
