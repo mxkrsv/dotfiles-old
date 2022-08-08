@@ -101,6 +101,10 @@ prompt_end() {
 	CURRENT_BG=''
 }
 
+### Cursor stuff
+set_block_cursor() { printf '\e[2 q' }
+set_beam_cursor() { printf '\e[6 q' }
+
 ### Prompt components
 # Each component will draw itself, and hide itself if no information needs to be shown
 
@@ -221,6 +225,12 @@ zle-line-finish() {
 
 ## Update vi mode indicator when the keymap changes
 zle-keymap-select() {
+	if [[ "$KEYMAP" = vicmd ]]; then
+		set_block_cursor
+	else
+		set_beam_cursor
+	fi
+
 	VI_KEYMAP="$KEYMAP"
 	zle .reset-prompt 2>/dev/null
 }
@@ -237,6 +247,9 @@ prompt_agnoster_setup() {
 	prompt_opts=(cr subst percent)
 
 	add-zsh-hook precmd prompt_agnoster_precmd
+
+	# Restore block cursor when giving control to a program
+	add-zsh-hook preexec set_block_cursor
 
 	zle -N zle-line-finish
 	zle -N zle-keymap-select
