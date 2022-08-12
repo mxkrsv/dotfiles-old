@@ -20,6 +20,8 @@ source "$ZDOTDIR"/.zshtheme
 
 # beautiful ls
 alias ls='ls -hF --color=auto'
+# git with bare repo for dotfiles
+alias dfgit="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
 # enable colors
 autoload -Uz colors && colors
