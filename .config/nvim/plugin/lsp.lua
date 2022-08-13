@@ -32,12 +32,17 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
+-- Add additional capabilities supported by nvim-cmp
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = { 'clangd', 'gopls', 'pylsp' }
 for _, lsp in pairs(servers) do
   lspconfig[lsp].setup {
-    on_attach = on_attach
+    on_attach = on_attach,
+    capabilities = capabilities
   }
 end
 
@@ -45,6 +50,7 @@ end
 if string.find(vim.api.nvim_buf_get_name(0), 'nvim') then
   lspconfig['sumneko_lua'].setup {
     on_attach = on_attach,
+    capabilities = capabilities,
     settings = {
       Lua = {
         diagnostics = {
@@ -59,6 +65,7 @@ if string.find(vim.api.nvim_buf_get_name(0), 'nvim') then
 else
   lspconfig['sumneko_lua'].setup {
     on_attach = on_attach,
+    capabilities = capabilities,
     settings = {
       Lua = {
         diagnostics = {
