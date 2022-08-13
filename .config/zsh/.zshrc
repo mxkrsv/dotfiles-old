@@ -22,6 +22,8 @@ source "$ZDOTDIR"/.zshtheme
 alias ls='ls -hF --color=auto'
 # git with bare repo for dotfiles
 alias dfgit="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+# same for private dotfiles
+alias pdfgit="git --git-dir=$HOME/.private_dotfiles --work-tree=$HOME"
 
 # enable colors
 autoload -Uz colors && colors
