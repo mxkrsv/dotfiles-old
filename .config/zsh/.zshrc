@@ -49,3 +49,9 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 zstyle ':completion:*' list-colors 'no=00' 'fi=00' 'di=01;34' 'ln=01;36' \
 	'pi=40;33' 'so=01;35' 'bd=40;33;01' 'cd=40;33;01' 'ex=01;32' 'lc=\e[' \
 	'rm=m' 'tc=00' 'sp=00' 'ma=07' 'hi=00' 'du=00'
+
+# set terminal title
+precmd() {
+	print -Pn "\e]0;zsh %~%(1j, (%j job%(2j|s|)) ,): $_LAST_COMMAND\e\\"
+}
+preexec() { _LAST_COMMAND="${(q)1}"; print -Pn "\e]0;$_LAST_COMMAND\e\\"; }
