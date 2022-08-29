@@ -185,7 +185,7 @@ bar {
 
 ### Key bindings
 
-# Run file opener script
+# Find and open files
 bindsym --to-code $mod+o exec \
 	'while true; do \
 		file="$(ls -ap | $menu)"; \
@@ -197,6 +197,13 @@ bindsym --to-code $mod+o exec \
 			cd "$file"; \
 		fi \
 	done'
+
+# Find and go to window
+bindsym --to-code $mod+g exec swaymsg -t get_tree | \
+	jq -r '.. | objects | select(has("app_id")) | \
+		(.id | tostring | (. + " " * (6 - length))) + .name' | \
+	sort -rn | $menu | cut -d' ' -f1 | \
+	xargs -I{} swaymsg "[con_id={}] focus"
 
 # Make a screenshot and copy to clipboard
 bindsym --to-code {
