@@ -1,79 +1,50 @@
-/* =============================================================================
- *
- * Waybar configuration
- *
- * Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
- *
- * =========================================================================== */
-
-/* -----------------------------------------------------------------------------
- * Keyframes
- * -------------------------------------------------------------------------- */
-
-@keyframes blink-warning {
-	70% {
-		color: @light;
-	}
-
-	to {
-		color: @light;
-		background-color: @warning;
-	}
-}
+/* Keyframes */
 
 @keyframes blink-critical {
-	70% {
-		color: @light;
-	}
-
 	to {
-		color: @light;
+		/*color: @white;*/
 		background-color: @critical;
 	}
 }
 
 
-/* -----------------------------------------------------------------------------
- * Styles
- * -------------------------------------------------------------------------- */
+/* Styles */
 
-/* COLORS */
+/* Colors (gruvbox) */
+@define-color black	#282828;
+@define-color red	#cc241d;
+@define-color green	#98971a;
+@define-color yellow	#d79921;
+@define-color blue	#458588;
+@define-color purple	#b16286;
+@define-color aqua	#689d6a;
+@define-color gray	#a89984;
+@define-color brgray	#928374;
+@define-color brred	#fb4934;
+@define-color brgreen	#b8bb26;
+@define-color bryellow	#fabd2f;
+@define-color brblue	#83a598;
+@define-color brpurple	#d3869b;
+@define-color braqua	#8ec07c;
+@define-color white	#ebdbb2;
+@define-color bg2	#504945;
 
-/* Nord */
-/*@define-color light #eceff4;
-@define-color dark #2e3440;
-@define-color warning #ebcb8b;
-@define-color critical #d08770;
-@define-color mode #4c566a;
-@define-color workspaces #5e81ac;
-@define-color workspacesfocused #81a1c1;
-@define-color sound #d8dee9;
-@define-color network #4c566a;
-@define-color memory #88c0d0;
-@define-color cpu #434c5e;
-@define-color temp #d8dee9;
-@define-color layout #5e81ac;
-@define-color battery #88c0d0;
-@define-color date #2e3440;
-@define-color time #eceff4;*/
 
-/* Gruvbox */
-@define-color light #ebdbb2;
-@define-color dark #282828;
-@define-color warning #fabd2f;
-@define-color critical #cc241d;
-@define-color mode #a89984;
-@define-color workspaces #458588;
-@define-color workspacesfocused #83a598;
-@define-color sound #d3869b;
-@define-color network #b16286;
-@define-color memory #8ec07c;
-@define-color cpu #98971a;
-@define-color temp #b8bb26;
-@define-color layout #689d6a;
-@define-color battery #fabd2f;
-@define-color date #282828;
-@define-color time #ebdbb2;
+@define-color warning 	@bryellow;
+@define-color critical	@red;
+@define-color mode	@black;
+@define-color unfocused	@bg2;
+@define-color focused	@braqua;
+@define-color inactive	@purple;
+@define-color sound	@brpurple;
+@define-color network	@purple;
+@define-color memory	@braqua;
+@define-color cpu	@green;
+@define-color temp	@brgreen;
+@define-color layout	@bryellow;
+@define-color battery	@aqua;
+@define-color date	@black;
+@define-color time	@white;
 
 /* Reset all styles */
 * {
@@ -86,8 +57,8 @@
 
 /* The whole bar */
 #waybar {
-	background: transparent;
-	color: @light;
+	background: rgba(40, 40, 40, 0.8784313725); /* #282828e0 */
+	color: @white;
 	font-family: Terminus, Siji;
 	font-size: 10pt;
 	/*font-weight: bold;*/
@@ -110,31 +81,17 @@
 	padding-right: 10px;
 }
 
-/* Each module that should blink */
-#mode,
-#memory,
-#temperature,
-#battery {
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-direction: alternate;
-}
-
 /* Each critical module */
+#mode,
 #memory.critical,
 #cpu.critical,
 #temperature.critical,
-#battery.critical {
-	color: @critical;
-}
-
-/* Each critical that should blink */
-#mode,
-#memory.critical,
-#temperature.critical,
 #battery.critical.discharging {
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
 	animation-name: blink-critical;
-	animation-duration: 2s;
+	animation-duration: 1s;
 }
 
 /* Each warning */
@@ -142,40 +99,43 @@
 #memory.warning,
 #cpu.warning,
 #temperature.warning,
-#battery.warning {
-	color: @warning;
-}
-
-/* Each warning that should blink */
 #battery.warning.discharging {
-	animation-name: blink-warning;
-	animation-duration: 3s;
+	color: @warning;
 }
 
 /* And now modules themselves in their respective order */
 
-#mode { /* Shown current Sway mode (resize etc.) */
-	color: @light;
+/* Current sway mode (resize etc) */
+#mode {
+	color: @white;
 	background: @mode;
 }
 
 /* Workspaces stuff */
 #workspaces button {
 	/*font-weight: bold;*/
-	padding-left: 4px;
-	padding-right: 4px;
-	color: @dark;
-	background: @workspaces;
+	padding-left: 2px;
+	padding-right: 2px;
+	color: @white;
+	background: @unfocused;
 }
 
+/* Inactive (on unfocused output) */
+#workspaces button.visible {
+	color: @white;
+	background: @inactive;
+}
+
+/* Active (on focused output) */
 #workspaces button.focused {
-	background: @workspacesfocused;
+	color: @black;
+	background: @focused;
 }
 
-/*#workspaces button.urgent {
-	border-color: #c9545d;
-	color: #c9545d;
-}*/
+#workspaces button.urgent {
+	color: @black;
+	background: @warning;
+}
 
 #window {
 	margin-right: 40px;
@@ -186,37 +146,37 @@
 #pulseaudio,
 #sndio {
 	background: @sound;
-	color: @dark;
+	color: @black;
 }
 
 #network {
 	background: @network;
-	color: @light;
+	color: @white;
 }
 
 #memory {
 	background: @memory;
-	color: @dark;
+	color: @black;
 }
 
 #cpu {
 	background: @cpu;
-	color: @light;
+	color: @white;
 }
 
 #temperature {
 	background: @temp;
-	color: @dark;
+	color: @black;
 }
 
 #language {
 	background: @layout;
-	color: @light;
+	color: @black;
 }
 
 #battery {
 	background: @battery;
-	color: @dark;
+	color: @white;
 }
 
 #tray {
@@ -225,74 +185,70 @@
 
 #clock.date {
 	background: @date;
-	color: @light;
+	color: @white;
 }
 
 #clock.time {
 	background: @time;
-	color: @dark;
-}
-
-#pulseaudio.muted {
-	/* No styles */
+	color: @black;
 }
 
 #custom-arrow1 {
-	font-size: 16px;
+	font-size: 20px;
 	color: @sound;
 	background: transparent;
 }
 
 #custom-arrow2 {
-	font-size: 16px;
+	font-size: 20px;
 	color: @network;
 	background: @sound;
 }
 
 #custom-arrow3 {
-	font-size: 16px;
+	font-size: 20px;
 	color: @memory;
 	background: @network;
 }
 
 #custom-arrow4 {
-	font-size: 16px;
+	font-size: 20px;
 	color: @cpu;
 	background: @memory;
 }
 
 #custom-arrow5 {
-	font-size: 16px;
+	font-size: 20px;
 	color: @temp;
 	background: @cpu;
 }
 
 #custom-arrow6 {
-	font-size: 16px;
-	color: @layout;
+	font-size: 20px;
+	color: @battery;
 	background: @temp;
 }
 
 #custom-arrow7 {
-	font-size: 16px;
-	color: @battery;
-	background: @layout;
-}
-
-#custom-arrow8 {
-	font-size: 16px;
-	color: @date;
+	font-size: 20px;
+	color: @layout;
 	background: @battery;
 }
 
+#custom-arrow8 {
+	font-size: 20px;
+	color: @date;
+	background: @layout;
+}
+
 #custom-arrow9 {
-	font-size: 16px;
+	font-size: 20px;
 	color: @time;
 	background: @date;
 }
 
 #custom-arrow10 {
-	font-size: 16px;
-	color: @workspaces;
+	font-size: 20px;
+	color: @unfocused;
 	background: transparent;
 }

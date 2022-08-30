@@ -1,15 +1,5 @@
-// =============================================================================
-//
-// Waybar configuration (https://hg.sr.ht/~begs/dotfiles)
-//
-// Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
-//
-// =============================================================================
-
 {
-	// -------------------------------------------------------------------------
 	// Global configuration
-	// -------------------------------------------------------------------------
 
 	"layer": "top",
 	"position": "top",
@@ -40,9 +30,9 @@
 		"custom/arrow5",
 		"temperature",
 		"custom/arrow6",
-		"sway/language",
-		"custom/arrow7",
 		"battery",
+		"custom/arrow7",
+		"sway/language",
 		"custom/arrow8",
 		"tray",
 		"clock#date",
@@ -50,9 +40,7 @@
 		"clock#time"
 	],
 
-	// -------------------------------------------------------------------------
 	// Modules
-	// -------------------------------------------------------------------------
 
 	"battery": {
 		"interval": 1,
@@ -60,14 +48,14 @@
 			"warning": 30,
 			"critical": 15
 		},
-		"format": " {capacity}%", // Icon: bolt
-		"format-discharging": "{icon} {capacity}%",
+		"format-time": "{H}:{M:02}",
+		"format": " {capacity}% ({time})",
+		"format-discharging": "{icon} {capacity}% ({time})",
 		"format-icons": [
-			"", // Icon: battery-full
-			"", // Icon: battery-three-quarters
-			"", // Icon: battery-half
-			"", // Icon: battery-quarter
-			""  // Icon: battery-empty
+			"",
+			"",
+			"",
+			""
 		],
 		"tooltip": false
 	},
@@ -80,18 +68,18 @@
 
 	"clock#date": {
 		"interval": 20,
-		"format": "{:%e %b %Y}", // Icon: calendar-alt
-		//"tooltip-format": "{:%e %B %Y}"
+		"format": "{:%e %b %Y}",
 		"tooltip": false
+		//"tooltip-format": "{:%e %B %Y}"
 	},
 
 	"cpu": {
 		"interval": 5,
 		"tooltip": false,
-		"format": " {usage}%", // Icon: microchip
+		"format": " {usage}%",
 		"states": {
-		  "warning": 70,
-		  "critical": 90
+			"warning": 70,
+			"critical": 90
 		}
 	},
 
@@ -103,7 +91,7 @@
 
 	"memory": {
 		"interval": 5,
-		"format": " {}%", // Icon: memory
+		"format": " {used:0.1f}G/{total:0.1f}G",
 		"states": {
 			"warning": 70,
 			"critical": 90
@@ -112,9 +100,8 @@
 
 	"network": {
 		"interval": 5,
-		// TODO: format-icons
-		"format-wifi": " {essid} ({signalStrength}%)", // Icon: wifi
-		//"format-ethernet": " {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
+		"format-wifi": " {essid} ({signalStrength}%)",
+		//"format-ethernet": " {ifname}: {ipaddr}/{cidr}",
 		"format-ethernet": " {ifname}",
 		"format-disconnected": "",
 		//"tooltip-format": "{ifname}: {ipaddr}",
@@ -123,7 +110,7 @@
 	},
 
 	"sway/mode": {
-		"format": "<span style=\"italic\"> {}</span>", // Icon: expand-arrows-alt
+		"format": "{}",
 		"tooltip": false
 	},
 
@@ -134,19 +121,10 @@
 	},
 
 	"sway/workspaces": {
-		"all-outputs": false,
-		"disable-scroll": false,
-		"format": "{name}",
-		"format-icons": {
-			"1:www": "龜", // Icon: firefox-browser
-			"2:mail": "", // Icon: mail
-			"3:editor": "", // Icon: code
-			"4:terminals": "", // Icon: terminal
-			"5:portal": "", // Icon: terminal
-			"urgent": "",
-			"focused": "",
-			"default": ""
-		}
+		"disable-scroll-wraparound": true,
+		"smooth-scrolling-threshold": 4,
+		"enable-bar-scroll": true,
+		"format": "{name}"
 	},
 
 	"pulseaudio": {
@@ -169,14 +147,10 @@
 	"temperature": {
 		"critical-threshold": 90,
 		"interval": 5,
-		//"format": "{icon} {temperatureC}°C",
 		"format": "{icon} {temperatureC}°",
 		"format-icons": [
-			"", // Icon: temperature-empty
-			//"", // Icon: temperature-quarter
-			"", // Icon: temperature-half
-			//"", // Icon: temperature-three-quarters
-			""  // Icon: temperature-full
+			"",
+			""
 		],
 		"tooltip": false
 	},
@@ -196,7 +170,7 @@
 	},
 
 	"tray": {
-		"icon-size": 21
+		"icon-size": 18
 		//"spacing": 10
 	},
 
@@ -250,3 +224,5 @@
 		"tooltip": false
 	}
 }
+
+# vi:ft=json
