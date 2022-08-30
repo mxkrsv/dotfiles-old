@@ -103,7 +103,7 @@ input type:tablet_tool {
 # Keyboard
 input type:keyboard {
 	xkb_layout us,ru
-	xkb_options grp:caps_toggle,grp_led:caps
+	xkb_options grp:caps_toggle
 }
 
 # Touchpad
@@ -163,24 +163,9 @@ exec_always gsettings set org.gnome.desktop.interface {
 
 # Status bar (see `man 5 sway-bar`)
 bar {
-	font $font $font_size
-	separator_symbol ' / '
+	swaybar_command waybar
 	position top
-	status_command i3status
-	status_padding 0
-	status_edge_padding 12
 	mode dock
-	colors {
-		separator	$inactive
-		background	$black$a
-		statusline	$white
-
-		# class			color		background	text
-		focused_workspace	$focused 	$focused	$black
-		active_workspace	$inactive	$inactive	$white
-		inactive_workspace	$unfocused$a	$unfocused$a	$white
-		urgent_workspace	$urgent		$urgent		$black
-	}
 }
 
 ### Key bindings
@@ -231,9 +216,9 @@ bindsym --locked {
 	XF86MonBrightnessUp exec light -A 5
 
 	# Sound
-	XF86AudioRaiseVolume exec amixer set Master 1+ && pkill -USR1 i3status
-	XF86AudioLowerVolume exec amixer set Master 1- && pkill -USR1 i3status
-	XF86AudioMute exec amixer set Master toggle && pkill -USR1 i3status
+	XF86AudioRaiseVolume exec amixer set Master 1+ && pkill -x -RTMIN+11 waybar
+	XF86AudioLowerVolume exec amixer set Master 1- && pkill -x -RTMIN+11 waybar
+	XF86AudioMute exec amixer set Master toggle && pkill -x -RTMIN+11 waybar
 
 	# Media playback
 	XF86AudioPlay exec playerctl play-pause
@@ -435,9 +420,9 @@ mode "config" {
 		Shift+b exec light -U 5
 
 		# Sound
-		v exec amixer set Master 1+ && pkill -USR1 i3status
-		Shift+v exec amixer set Master 1- && pkill -USR1 i3status
-		m exec amixer set Master toggle && pkill -USR1 i3status
+		v exec amixer set Master 1+ && pkill -x -RTMIN+11 waybar
+		Shift+v exec amixer set Master 1- && pkill -x -RTMIN+11 waybar
+		m exec amixer set Master toggle && pkill -x -RTMIN+11 waybar
 
 		# Media playback
 		a exec playerctl previous
