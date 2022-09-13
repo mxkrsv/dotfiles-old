@@ -7,6 +7,5 @@ select = "underline"
 
 [editor]
 line-number = "relative"
-# Not yet supported
-# color-modes = true
-# cursorline = true
+color-modes = true
+cursorline = true
