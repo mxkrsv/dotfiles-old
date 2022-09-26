@@ -51,6 +51,7 @@
 		"format-time": "{H}:{M:02}",
 		"format": " {capacity}% ({time})",
 		"format-discharging": "{icon} {capacity}% ({time})",
+		"format-full": "{icon} {capacity}%",
 		"format-icons": [
 			"",
 			"",
