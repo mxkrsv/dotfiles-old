@@ -132,9 +132,18 @@
 	background: @focused;
 }
 
+/* Contains an urgent window */
 #workspaces button.urgent {
 	color: @black;
 	background: @warning;
+}
+
+/* Style when cursor is on the button */
+#workspaces button:hover {
+	box-shadow: none;
+	text-shadow: none;
+	background: @black;
+	color: @white;
 }
 
 #window {
