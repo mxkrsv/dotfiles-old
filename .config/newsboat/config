@@ -8,8 +8,6 @@ download-timeout 60
 # vi-like bindings
 bind-key j down
 bind-key k up
-bind-key j next articlelist
-bind-key k prev articlelist
 bind-key J next-feed articlelist
 bind-key K prev-feed articlelist
 bind-key G end
