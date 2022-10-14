@@ -158,9 +158,9 @@
 
 	"custom/alsa": {
 		"exec": "amixer get Master | sed -nre 's/.*\\[off\\].*/ muted/p; s/.*\\[(.*%)\\].*/ \\1/p'",
-		"on-click": "amixer set Master toggle; pkill -x -RTMIN+11 waybar",
-		"on-scroll-up": "amixer set Master 1+; pkill -x -RTMIN+11 waybar",
-		"on-scroll-down": "amixer set Master 1-; pkill -x -RTMIN+11 waybar",
+		"on-click": "amixer set Master toggle",
+		"on-scroll-up": "amixer set Master 1+",
+		"on-scroll-down": "amixer set Master 1-",
 		"signal": 11,
 		"interval": 10,
 		"tooltip": false
