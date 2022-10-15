@@ -216,9 +216,9 @@ bindsym --locked {
 	XF86MonBrightnessUp exec light -A 5
 
 	# Sound
-	XF86AudioRaiseVolume exec amixer set Master 1+ && pkill -x -RTMIN+11 waybar
-	XF86AudioLowerVolume exec amixer set Master 1- && pkill -x -RTMIN+11 waybar
-	XF86AudioMute exec amixer set Master toggle && pkill -x -RTMIN+11 waybar
+	XF86AudioRaiseVolume exec amixer set Master 1+ && pkill -RTMIN+11 -x waybar
+	XF86AudioLowerVolume exec amixer set Master 1- && pkill -RTMIN+11 -x waybar
+	XF86AudioMute exec amixer set Master toggle && pkill -RTMIN+11 -x waybar
 
 	# Media playback
 	XF86AudioPlay exec playerctl play-pause
@@ -420,9 +420,9 @@ mode "config" {
 		Shift+b exec light -U 5
 
 		# Sound
-		v exec amixer set Master 1+ && pkill -x -RTMIN+11 waybar
-		Shift+v exec amixer set Master 1- && pkill -x -RTMIN+11 waybar
-		m exec amixer set Master toggle && pkill -x -RTMIN+11 waybar
+		v exec amixer set Master 1+ && pkill -RTMIN+11 -x waybar
+		Shift+v exec amixer set Master 1- && pkill -RTMIN+11 -x waybar
+		m exec amixer set Master toggle && pkill -RTMIN+11 -x waybar
 
 		# Media playback
 		a exec playerctl previous
