@@ -43,7 +43,7 @@
 	// Modules
 
 	"battery": {
-		"interval": 1,
+		"interval": 10,
 		"states": {
 			"warning": 30,
 			"critical": 15
@@ -52,6 +52,7 @@
 		"format": " {capacity}% ({time})",
 		"format-discharging": "{icon} {capacity}% ({time})",
 		"format-full": "{icon} {capacity}%",
+		"format-alt": "{icon} {power}W",
 		"format-icons": [
 			"",
 			"",
@@ -78,6 +79,7 @@
 		"interval": 5,
 		"tooltip": false,
 		"format": " {usage}%",
+		"format-alt": " {load}",
 		"states": {
 			"warning": 70,
 			"critical": 90
@@ -87,6 +89,7 @@
 	"sway/language": {
 		"format": " {}",
 		"min-length": 5,
+		"on-click": "swaymsg 'input * xkb_switch_layout next'",
 		"tooltip": false
 	},
 
@@ -96,18 +99,17 @@
 		"states": {
 			"warning": 70,
 			"critical": 90
-		}
+		},
+		"tooltip": false
 	},
 
 	"network": {
 		"interval": 5,
 		"format-wifi": " {essid} ({signalStrength}%)",
-		//"format-ethernet": " {ifname}: {ipaddr}/{cidr}",
 		"format-ethernet": " {ifname}",
 		"format-disconnected": "",
-		//"tooltip-format": "{ifname}: {ipaddr}",
+		"format-alt": "{ipaddr}/{cidr}",
 		"tooltip": false
-		//"on-click": "cmst"
 	},
 
 	"sway/mode": {
