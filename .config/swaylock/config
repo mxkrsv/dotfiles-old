@@ -1,5 +1,5 @@
-font=Terminus
-font-size=16
+font=JetBrains Mono
+font-size=20
 show-failed-attempts
 daemonize
 color=282828

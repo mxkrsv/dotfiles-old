@@ -31,5 +31,5 @@ config.bind('<z><p><l>', basecmd + ' --password-only')
 config.bind('<z><o><l>', basecmd + ' --otp-only')
 
 # Font
-c.fonts.default_family = "Terminus"
-c.fonts.default_size = "14px"
+c.fonts.default_family = "JetBrains Mono"
+c.fonts.default_size = "9pt"

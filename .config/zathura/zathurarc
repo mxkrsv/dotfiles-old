@@ -1,4 +1,4 @@
-set font "Terminus 10"
+set font "JetBrains Mono 9"
 set selection-clipboard clipboard
 
 # Base16 Nord

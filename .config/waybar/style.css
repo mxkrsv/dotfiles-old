@@ -59,8 +59,8 @@
 #waybar {
 	background: rgba(40, 40, 40, 0.8784313725); /* #282828e0 */
 	color: @white;
-	font-family: Terminus, Siji;
-	font-size: 10pt;
+	font-family: JetBrains Mono, Siji;
+	font-size: 9pt;
 	/*font-weight: bold;*/
 }
 
@@ -77,8 +77,8 @@
 #custom-alsa,
 #sndio,
 #tray {
-	padding-left: 10px;
-	padding-right: 10px;
+	padding-left: 8pt;
+	padding-right: 8pt;
 }
 
 /* Each critical module */
@@ -114,8 +114,8 @@
 /* Workspaces stuff */
 #workspaces button {
 	/*font-weight: bold;*/
-	padding-left: 2px;
-	padding-right: 2px;
+	padding-left: 2pt;
+	padding-right: 2pt;
 	color: @white;
 	background: @unfocused;
 }
@@ -147,8 +147,8 @@
 }
 
 #window {
-	margin-right: 40px;
-	margin-left: 40px;
+	margin-right: 35pt;
+	margin-left: 35pt;
 }
 
 #custom-alsa,
@@ -203,61 +203,61 @@
 }
 
 #custom-arrow1 {
-	font-size: 20px;
+	font-size: 11pt;
 	color: @sound;
 	background: transparent;
 }
 
 #custom-arrow2 {
-	font-size: 20px;
+	font-size: 11pt;
 	color: @network;
 	background: @sound;
 }
 
 #custom-arrow3 {
-	font-size: 20px;
+	font-size: 11pt;
 	color: @memory;
 	background: @network;
 }
 
 #custom-arrow4 {
-	font-size: 20px;
+	font-size: 11pt;
 	color: @cpu;
 	background: @memory;
 }
 
 #custom-arrow5 {
-	font-size: 20px;
+	font-size: 11pt;
 	color: @temp;
 	background: @cpu;
 }
 
 #custom-arrow6 {
-	font-size: 20px;
+	font-size: 11pt;
 	color: @battery;
 	background: @temp;
 }
 
 #custom-arrow7 {
-	font-size: 20px;
+	font-size: 11pt;
 	color: @layout;
 	background: @battery;
 }
 
 #custom-arrow8 {
-	font-size: 20px;
+	font-size: 11pt;
 	color: @date;
 	background: @layout;
 }
 
 #custom-arrow9 {
-	font-size: 20px;
+	font-size: 11pt;
 	color: @time;
 	background: @date;
 }
 
 #custom-arrow10 {
-	font-size: 20px;
+	font-size: 11pt;
 	color: @unfocused;
 	background: transparent;
 }

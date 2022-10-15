@@ -18,7 +18,7 @@ set {
 	$floating_term $term -a floating_foot
 
 	# Generic selector
-	$fuzzel fuzzel --font=Terminus:size=10 --terminal=$term \
+	$fuzzel fuzzel --font=$font:size=$font_size --terminal=$term \
 		--background=282828e0 --text-color=ebdbb2ff \
 		--match-color=98971aff --selection-color=ebdbb2ff \
 		--selection-text-color=282828ff --border-width=2 \
@@ -31,8 +31,8 @@ set {
 	$menu $fuzzel -dP "menu> "
 
 	# Font
-	$font Terminus
-	$font_size 10
+	$font "JetBrains Mono"
+	$font_size 9
 }
 
 ### General configuration
