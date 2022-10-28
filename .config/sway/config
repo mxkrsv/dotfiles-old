@@ -163,6 +163,11 @@ bar {
 	mode dock
 }
 
+### Switch bindings
+
+# Lock the laptop when closing the lid
+bindswitch lid:on exec pkill -USR1 swayidle
+
 ### Key bindings
 
 # Find and open files
