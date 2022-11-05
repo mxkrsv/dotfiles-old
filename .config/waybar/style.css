@@ -53,6 +53,8 @@
 	min-height: 0;
 	margin: 0;
 	padding: 0;
+	box-shadow: none;
+	text-shadow: none;
 }
 
 /* The whole bar */
@@ -140,8 +142,6 @@
 
 /* Style when cursor is on the button */
 #workspaces button:hover {
-	box-shadow: none;
-	text-shadow: none;
 	background: @black;
 	color: @white;
 }
