@@ -453,6 +453,9 @@ exec_always {
 	# Foot server, so we can use footclient as term
 	pgrep -xf 'foot --server' || \
 		foot --server --log-no-syslog --log-level=warning &
+
+	# Dynamic output manager
+	pgrep -x kanshi && pkill -SIGHUP kanshi || kanshi &
 }
 
 # Include additional configs
