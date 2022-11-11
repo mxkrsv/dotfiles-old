@@ -110,6 +110,10 @@ input type:touchpad {
 	natural_scroll enabled
 }
 
+# Specific
+input '2:7:SynPS/2_Synaptics_TouchPad' pointer_accel 0.5
+input '2:10:TPPS/2_Elan_TrackPoint' pointer_accel 0.5
+
 ### Apperance
 
 # Colors (gruvbox theme)
