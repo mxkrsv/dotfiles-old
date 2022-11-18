@@ -1,5 +1,6 @@
 set font "JetBrains Mono 9"
 set selection-clipboard clipboard
+set synctex-editor-command "footclient nvim"
 
 # Base16 Nord
 # Author: arcticicestudio
