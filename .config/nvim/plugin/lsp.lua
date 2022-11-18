@@ -56,8 +56,19 @@ lspconfig['texlab'].setup {
     texlab = {
       build = {
         onSave = true,
-        executable = 'lualatex'
-      }
+        forwardSearchAfter = true,
+        args = { '-lualatex' },
+      },
+      forwardSearch = {
+        executable = 'zathura',
+        args = { '%p', '--synctex-forward=%l:1:%f' },
+      },
+      chktex = {
+        onOpenAndSave = true,
+      },
+      latexindent = {
+        modifyLineBreaks = true,
+      },
     }
   }
 }
