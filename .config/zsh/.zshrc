@@ -51,7 +51,5 @@ zstyle ':completion:*' list-colors 'no=00' 'fi=00' 'di=01;34' 'ln=01;36' \
 	'rm=m' 'tc=00' 'sp=00' 'ma=07' 'hi=00' 'du=00'
 
 # set terminal title
-precmd() {
-	print -Pn "\e]0;zsh %~%(1j, (%j job%(2j|s|)) ,): $_LAST_COMMAND\e\\"
-}
-preexec() { _LAST_COMMAND="${(q)1}"; print -Pn "\e]0;$_LAST_COMMAND\e\\"; }
+precmd() { print -Pn "\e]0;zsh %~%(1j, (%j job%(2j|s|)) ,)\e\\"; }
+preexec() { print -Pn "\e]0;${(q)1}\e\\"; }
