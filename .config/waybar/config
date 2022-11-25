@@ -52,6 +52,7 @@
 		"format": "{icon} {capacity}% ({time})",
 		"format-charging": " {capacity}% ({time})",
 		"format-charging-full": " {capacity}%",
+		"format-full": "{icon} {capacity}%",
 		"format-alt": "{icon} {power}W",
 		"format-icons": [
 			"",
@@ -232,4 +233,4 @@
 	}
 }
 
-# vi:ft=json
+# vi:ft=jsonc
