@@ -8,6 +8,7 @@ vim.o.textwidth = 80
 vim.o.cursorline = true
 vim.o.cursorcolumn = true
 vim.o.title = true
+vim.o.scrolloff = 3
 
 -- Setup theme
 vim.o.termguicolors = true
