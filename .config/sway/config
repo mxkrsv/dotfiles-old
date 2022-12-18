@@ -167,11 +167,6 @@ bar {
 	mode dock
 }
 
-### Switch bindings
-
-# Lock the laptop when closing the lid
-bindswitch lid:on exec pkill -USR1 swayidle
-
 ### Key bindings
 
 # Find and open files
@@ -412,11 +407,10 @@ bindsym $mod+Equal mode "passthrough"
 # System setup
 mode "config" {
 	bindsym --to-code {
-		# Machine power state
-		p exec doas -n poweroff; mode "default"
-		r exec doas -n reboot; mode "default"
-
-		# Enter idle ("l" for "lock")
+		# Machine state
+		p exec loginctl poweroff; mode "default"
+		r exec loginctl reboot; mode "default"
+		--release s exec loginctl suspend; mode "default"
 		--release l exec pkill -USR1 swayidle; mode "default"
 
 		# Brightness
@@ -429,9 +423,9 @@ mode "config" {
 		m exec amixer set Master toggle && pkill -RTMIN+11 -x waybar
 
 		# Media playback
-		a exec playerctl previous
-		s exec playerctl play-pause
-		d exec playerctl next
+		z exec playerctl previous
+		x exec playerctl play-pause
+		c exec playerctl next
 
 		# Return to default mode
 		Return mode "default"
@@ -447,10 +441,6 @@ for_window [app_id="^floating_foot$"] floating enable
 
 # Autostart
 exec_always {
-	# D-Bus session
-	pgrep -x dbus-daemon || dbus-daemon --session \
-		--address=unix:path=$XDG_RUNTIME_DIR/bus &
-
 	# Notification daemon
 	pgrep -x mako || mako &
 
