@@ -441,6 +441,10 @@ for_window [app_id="^floating_foot$"] floating enable
 
 # Autostart
 exec_always {
+	# D-Bus session
+	pgrep -xf 'dbus-daemon --session' || dbus-daemon --session \
+		--address=unix:path=$XDG_RUNTIME_DIR/bus &
+
 	# Notification daemon
 	pgrep -x mako || mako &
 
