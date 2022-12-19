@@ -1,9 +1,6 @@
 # Enable mouse
 set mouse=true
 
-# Disable MPRIS
-set mpris=false
-
 # colors from gruvbox: https://github.com/morhetz/gruvbox
 # default text color
 set color_win_fg=default
