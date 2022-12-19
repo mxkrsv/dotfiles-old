@@ -1,6 +1,7 @@
 # Remove LSP warnings
 from qutebrowser.config.configfiles import ConfigAPI
 from qutebrowser.config.config import ConfigContainer
+
 config: ConfigAPI = config
 c: ConfigContainer = c
 # from qutebrowser.api import interceptor
@@ -33,3 +34,8 @@ config.bind('<z><o><l>', basecmd + ' --otp-only')
 # Font
 c.fonts.default_family = "JetBrains Mono"
 c.fonts.default_size = "9pt"
+
+# Yes, I just want to find what I need when I need to, don't blame me
+c.url.default_page = "https://www.google.com/"
+c.url.start_pages = c.url.default_page
+c.url.searchengines = {"DEFAULT": "https://www.google.com/search?q={}"}
