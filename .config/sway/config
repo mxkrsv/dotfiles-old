@@ -172,7 +172,7 @@ bar {
 # Find and open files
 bindsym --to-code $mod+o exec \
 	'while true; do \
-		file="$(ls -ap | $menu)"; \
+		file="$(ls -p | $menu)"; \
 		if [ "$file" = "" ]; then \
 			exit; \
 		elif [ -f "$file" ]; then \
