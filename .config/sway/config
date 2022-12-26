@@ -167,6 +167,27 @@ bar {
 	mode dock
 }
 
+### Touchpad bindings
+
+bindgesture {
+	# Workspaces
+	swipe:3:right workspace prev
+	swipe:3:left workspace next
+
+	# Kill active window
+	swipe:3:down kill
+
+	# Scratchpad
+	pinch:2:inward+down move scratchpad
+	pinch:2:outward+up scratchpad show
+
+	# Move active window
+	swipe:4:left move left
+	swipe:4:right move right
+	swipe:4:up move up
+	swipe:4:down move down
+}
+
 ### Key bindings
 
 # Find and open files
