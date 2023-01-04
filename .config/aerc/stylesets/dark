@@ -1,5 +1,3 @@
-# pretty beautiful aerc styleset (part of git.sr.ht/~begs/dotfiles)
-# see aerc-styelsets(7)
 # should work with any terminal colorscheme, but was designed for gruvbox
 # terminal colors are preferred, but hex is used for grayscale
 
