@@ -3,7 +3,7 @@
 	name = Maxim Karasev
 [sendemail]
 	smtpserver = disroot.org
-	smtpuser = begs@disroot.org
+	smtpuser = mxkrsv@disroot.org
 	smtpencryption = tls
 	smtpserverport = 587
 [rebase]
