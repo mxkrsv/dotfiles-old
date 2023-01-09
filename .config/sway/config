@@ -24,7 +24,7 @@ set {
 
 	# Font
 	$font "JetBrains Mono"
-	$font_size 9
+	$font_size 10
 }
 
 ### General configuration

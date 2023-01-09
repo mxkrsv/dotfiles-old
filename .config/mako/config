@@ -3,7 +3,7 @@ border-radius=0
 margin=10,10,10
 width=200
 default-timeout=3000
-font=JetBrains Mono 9
+font=JetBrains Mono 10
 
 # Nord
 #background-color=#2e3440e0

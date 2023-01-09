@@ -33,7 +33,7 @@ config.bind('<z><o><l>', basecmd + ' --otp-only')
 
 # Font
 c.fonts.default_family = "JetBrains Mono"
-c.fonts.default_size = "9pt"
+c.fonts.default_size = "10pt"
 
 # Yes, I just want to find what I need when I need to, don't blame me
 c.url.default_page = "https://www.google.com/"
