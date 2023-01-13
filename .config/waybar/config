@@ -1,9 +1,6 @@
 {
-	// Global configuration
-
 	"layer": "top",
 	"position": "top",
-	//"height": 18,
 
 	"modules-left": [
 		"sway/mode",
@@ -12,31 +9,26 @@
 		"sway/window"
 	],
 
-	//"modules-center": [
-	//	"sway/window"
-	//],
-
 	"modules-right": [
-		"custom/arrow1",
+		"custom/arrow9",
 		"custom/alsa",
 		//"pulseaudio",
-		//"sndio",
-		"custom/arrow2",
+		"custom/arrow8",
 		"network",
-		"custom/arrow3",
+		"custom/arrow7",
 		"memory",
-		"custom/arrow4",
+		"custom/arrow6",
 		"cpu",
 		"custom/arrow5",
 		"temperature",
-		"custom/arrow6",
+		"custom/arrow4",
 		"battery",
-		"custom/arrow7",
+		"custom/arrow3",
 		"sway/language",
-		"custom/arrow8",
+		"custom/arrow2",
 		"tray",
 		"clock#date",
-		"custom/arrow9",
+		"custom/arrow1",
 		"clock#time"
 	],
 
@@ -173,10 +165,6 @@
 		"tooltip": false
 	},
 
-	"sndio": {
-		"format": " {}%"
-	},
-
 	"tray": {
 		"icon-size": 18
 		//"spacing": 10
@@ -233,4 +221,4 @@
 	}
 }
 
-# vi:ft=jsonc
+// vi:ft=jsonc

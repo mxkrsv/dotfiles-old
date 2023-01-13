@@ -55,6 +55,7 @@
 	padding: 0;
 	box-shadow: none;
 	text-shadow: none;
+	icon-shadow: none;
 }
 
 /* The whole bar */
@@ -77,8 +78,12 @@
 #pulseaudio,
 #temperature,
 #custom-alsa,
-#sndio,
-#tray {
+#tray,
+#backlight,
+#idle_inhibitor,
+#disk,
+#user,
+#mpris {
 	padding-left: 8pt;
 	padding-right: 8pt;
 }
@@ -152,8 +157,7 @@
 }
 
 #custom-alsa,
-#pulseaudio,
-#sndio {
+#pulseaudio {
 	background: @sound;
 	color: @black;
 }
@@ -204,26 +208,26 @@
 
 #custom-arrow1 {
 	font-size: 11pt;
-	color: @sound;
-	background: transparent;
+	color: @time;
+	background: @date;
 }
 
 #custom-arrow2 {
 	font-size: 11pt;
-	color: @network;
-	background: @sound;
+	color: @date;
+	background: @layout;
 }
 
 #custom-arrow3 {
 	font-size: 11pt;
-	color: @memory;
-	background: @network;
+	color: @layout;
+	background: @battery;
 }
 
 #custom-arrow4 {
 	font-size: 11pt;
-	color: @cpu;
-	background: @memory;
+	color: @battery;
+	background: @temp;
 }
 
 #custom-arrow5 {
@@ -234,26 +238,26 @@
 
 #custom-arrow6 {
 	font-size: 11pt;
-	color: @battery;
-	background: @temp;
+	color: @cpu;
+	background: @memory;
 }
 
 #custom-arrow7 {
 	font-size: 11pt;
-	color: @layout;
-	background: @battery;
+	color: @memory;
+	background: @network;
 }
 
 #custom-arrow8 {
 	font-size: 11pt;
-	color: @date;
-	background: @layout;
+	color: @network;
+	background: @sound;
 }
 
 #custom-arrow9 {
 	font-size: 11pt;
-	color: @time;
-	background: @date;
+	color: @sound;
+	background: transparent;
 }
 
 #custom-arrow10 {
