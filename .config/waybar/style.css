@@ -77,7 +77,6 @@
 #network,
 #pulseaudio,
 #temperature,
-#custom-alsa,
 #tray,
 #backlight,
 #idle_inhibitor,
@@ -156,7 +155,6 @@
 	margin-left: 35pt;
 }
 
-#custom-alsa,
 #pulseaudio {
 	background: @sound;
 	color: @black;
