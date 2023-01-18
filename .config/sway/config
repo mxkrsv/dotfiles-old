@@ -236,9 +236,10 @@ bindsym --locked {
 	XF86MonBrightnessUp exec light -A 5
 
 	# Sound
-	XF86AudioRaiseVolume exec amixer set Master 1+ && pkill -RTMIN+11 -x waybar
-	XF86AudioLowerVolume exec amixer set Master 1- && pkill -RTMIN+11 -x waybar
-	XF86AudioMute exec amixer set Master toggle && pkill -RTMIN+11 -x waybar
+	XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +1%
+	XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -1%
+	XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+	XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 	# Media playback
 	XF86AudioPlay exec playerctl play-pause
@@ -439,9 +440,10 @@ mode "config" {
 		Shift+b exec light -U 5
 
 		# Sound
-		v exec amixer set Master 1+ && pkill -RTMIN+11 -x waybar
-		Shift+v exec amixer set Master 1- && pkill -RTMIN+11 -x waybar
-		m exec amixer set Master toggle && pkill -RTMIN+11 -x waybar
+		v exec pactl set-sink-volume @DEFAULT_SINK@ +1%
+		Shift+v exec pactl set-sink-volume @DEFAULT_SINK@ -1%
+		m exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+		Shift+m exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 		# Media playback
 		z exec playerctl previous
