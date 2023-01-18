@@ -475,6 +475,9 @@ exec_always {
 
 	# Dynamic output manager
 	pgrep -x kanshi && pkill -SIGHUP kanshi || kanshi &
+
+	# PipeWire
+	pgrep -x wireplumber || /usr/libexec/pipewire-launcher &
 }
 
 # Include additional configs
