@@ -214,6 +214,8 @@ bindsym --to-code $mod+g exec swaymsg -t get_tree | \
 bindsym --to-code {
 	# Full screen
 	$mod+p exec grim - | wl-copy --type image/png
+	# Same with a media key
+	Print exec grim - | wl-copy --type image/png
 
 	# Area
 	$mod+Shift+p exec swaymsg -t get_tree | jq -r \
@@ -245,6 +247,8 @@ bindsym --locked {
 	XF86AudioPlay exec playerctl play-pause
 	XF86AudioNext exec playerctl next
 	XF86AudioPrev exec playerctl previous
+	XF86AudioStop exec playerctl stop
+	Pause exec playerctl pause
 }
 
 # General actions
