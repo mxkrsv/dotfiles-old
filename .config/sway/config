@@ -334,6 +334,9 @@ bindsym {
 	# Same with arrow keys
 	$mod+Ctrl+Up workspace prev_on_output
 	$mod+Ctrl+Down workspace next_on_output
+	# Same with mouse wheel
+	--whole-window $mod+button4 workspace prev_on_output
+	--whole-window $mod+button5 workspace next_on_output
 
 	# Relative container movement
 	$mod+Ctrl+Shift+$up move container to workspace prev_on_output
@@ -341,6 +344,9 @@ bindsym {
 	# Same with arrow keys
 	$mod+Ctrl+Shift+Up move container to workspace prev_on_output
 	$mod+Ctrl+Shift+Down move container to workspace next_on_output
+	# Same with mouse wheel
+	--whole-window $mod+Shift+button4 move container to workspace prev_on_output
+	--whole-window $mod+Shift+button5 move container to workspace next_on_output
 }
 
 # Outputs
