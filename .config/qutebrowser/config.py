@@ -13,7 +13,7 @@ config.load_autoconfig(False)
 c.auto_save.session = True
 
 # Darkmode settings
-c.colors.webpage.darkmode.enabled = True
+# c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.preferred_color_scheme = "dark"
 # c.colors.webpage.darkmode.policy.images = "never"
 # c.colors.webpage.darkmode.threshold.background = 100

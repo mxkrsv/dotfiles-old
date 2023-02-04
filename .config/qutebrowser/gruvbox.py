@@ -127,4 +127,4 @@ c.colors.tabs.selected.even.fg = bg
 c.colors.tabs.selected.even.bg = fg
 
 # Not always wanted
-c.colors.webpage.bg = bg
+# c.colors.webpage.bg = bg
