@@ -498,6 +498,9 @@ exec_always {
 
 	# PipeWire
 	pgrep -x wireplumber || /usr/libexec/pipewire-launcher &
+
+	# Gamma adjustment
+	pgrep -x wlsunset || wlsunset -l60 -L30 &
 }
 
 # Include additional configs
