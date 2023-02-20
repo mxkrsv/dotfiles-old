@@ -38,4 +38,8 @@ c.fonts.default_size = "10pt"
 # Yes, I just want to find what I need when I need to, don't blame me
 c.url.default_page = "https://www.google.com/"
 c.url.start_pages = c.url.default_page
-c.url.searchengines = {"DEFAULT": "https://www.google.com/search?q={}"}
+c.url.searchengines = {
+    "DEFAULT": "https://www.google.com/search?q={}",
+    "!repology": "https://repology.org/projects/?search={}",
+    "!reversocontext": "https://context.reverso.net/translation/english-russian/{}"
+}
