@@ -1,0 +1,9 @@
+# Set scaling factor
+output 'AU Optronics 0x408D Unknown' scale 1.5
+
+# Set sensitivity
+input '2:7:SynPS/2_Synaptics_TouchPad' pointer_accel 0.5
+input '2:10:TPPS/2_Elan_TrackPoint' pointer_accel 0.5
+
+# Disable laptop's display
+bindsym XF86Display output eDP-1 toggle
