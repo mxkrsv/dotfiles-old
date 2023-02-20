@@ -223,6 +223,12 @@ bindsym --to-code {
 			"\(.x),\(.y) \(.width)x\(.height)"' | \
 		slurp -b "$unfocused$a" -c "$focused" -B "$inactive$a" | \
 		grim -g- - | wl-copy -t image/png
+	# Same with a media key
+	XF86SelectiveScreenshot exec swaymsg -t get_tree | jq -r \
+		'.. | select(.pid? and .visible?) | .rect | \
+			"\(.x),\(.y) \(.width)x\(.height)"' | \
+		slurp -b "$unfocused$a" -c "$focused" -B "$inactive$a" | \
+		grim -g- - | wl-copy -t image/png
 
 	# Current view
 	$mod+Ctrl+p exec swaymsg -t get_tree | jq -r \
@@ -261,8 +267,10 @@ bindsym --to-code {
 	# Kill focused window
 	$mod+Shift+q kill
 
-	# Start your launcher
+	# Start a launcher
 	$mod+d exec $launcher
+	# Same with a media key
+	XF86Favorites exec $launcher
 
 	# Reload the configuration file
 	$mod+Shift+c reload
