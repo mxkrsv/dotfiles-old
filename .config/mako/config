@@ -2,14 +2,9 @@ border-size=2
 border-radius=0
 margin=10,10,10
 width=200
-default-timeout=3000
+default-timeout=0
 font=JetBrains Mono 10
-
-# Nord
-#background-color=#2e3440e0
-#text-color=#eceff4
-#border-color=#eceff4
-#progress-color=source #d08770
+history=1
 
 # Gruvbox
 background-color=#282828e0
@@ -18,7 +13,6 @@ border-color=#ebdbb2
 progress-color=source #cc241d
 
 [urgency=high]
-default-timeout=0
 background-color=#fb4934
 text-color=#282828
 border-color=#282828
