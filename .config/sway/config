@@ -243,6 +243,9 @@ bindsym --locked {
 	XF86AudioPrev exec playerctl previous
 	XF86AudioStop exec playerctl stop
 	Pause exec playerctl pause
+
+	# Dismiss notifications
+	XF86NotificationCenter exec makoctl dismiss -a
 }
 
 # General actions
@@ -455,6 +458,9 @@ mode "config" {
 		z exec playerctl previous
 		x exec playerctl play-pause
 		c exec playerctl next
+
+		# Dismiss notifications
+		n exec makoctl dismiss -a
 
 		# Return to default mode
 		Return mode "default"
