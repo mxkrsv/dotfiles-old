@@ -165,6 +165,9 @@ bindgesture {
 	# Kill active window
 	swipe:3:down kill
 
+	# Toggle floating
+	swipe:3:up floating toggle
+
 	# Scratchpad
 	pinch:2:inward+down move scratchpad
 	pinch:2:outward+up scratchpad show
