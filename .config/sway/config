@@ -66,9 +66,8 @@ output * bg `find ~/.wallpaper -type f | shuf -n 1` fill #282828
 
 # Start idle tracker
 exec swayidle -w \
-	timeout 600 'swaymsg "output * power off"' \
+	timeout 600 'chayang -d10 && swaymsg "output * power off" && swaylock' \
 		resume 'swaymsg "output * power on"' \
-	timeout 620 swaylock \
 	before-sleep swaylock
 
 ### Input configuration
