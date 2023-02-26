@@ -482,9 +482,6 @@ exec_always {
 	pgrep -xf 'dbus-daemon --session' || dbus-daemon --session \
 		--address=unix:path=$XDG_RUNTIME_DIR/bus &
 
-	# Notification daemon
-	pgrep -x mako || mako &
-
 	# Foot server, so we can use footclient as term
 	pgrep -xf 'foot --server' || \
 		foot --server --log-no-syslog --log-level=warning &
