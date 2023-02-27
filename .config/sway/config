@@ -180,18 +180,8 @@ bindgesture {
 
 ### Key bindings
 
-# Find and open files
-bindsym --to-code $mod+o exec \
-	'while true; do \
-		file="$(ls -p | $menu)"; \
-		if [ "$file" = "" ]; then \
-			exit; \
-		elif [ -f "$file" ]; then \
-			exec xdg-open "$file"; \
-		else \
-			cd "$file"; \
-		fi \
-	done'
+# File manager
+bindsym --to-code $mod+o exec $floating_term lf
 
 # Find and go to window
 bindsym --to-code $mod+g exec swaymsg -t get_tree | \
